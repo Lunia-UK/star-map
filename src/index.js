@@ -4,3 +4,5 @@ import Scene from './js/Scene'
 const canvas =  document.querySelector('.canvas');
 const scene = new Scene(canvas)
 scene.init()
+
+console.log(scene)
