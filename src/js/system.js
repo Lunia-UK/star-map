@@ -3,6 +3,7 @@ import * as dat from 'dat.gui'
 import Juridictions from './juridictions'
 import Labels from './label'
 import GetData from './getData'
+import Stars from './stars.js'
 
 export default class System {
   constructor(scene) {
@@ -12,6 +13,7 @@ export default class System {
 
   init() {
     this.makeSystem();
+    this.makeStar()
     this.initDatGUI();
     this.animate();
     this.getData();
@@ -24,6 +26,10 @@ export default class System {
     this.materialSphere = new THREE.MeshBasicMaterial({color: 0xffff80});
     this.stanton = new THREE.Mesh(this.geometrySphere, this.materialSphere)
     this.system.add(this.stanton)
+  }
+
+  makeStar(){
+    new Stars(this.scene);
   }
 
   initDatGUI() {

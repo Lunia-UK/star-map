@@ -12,7 +12,7 @@ export default class Scene {
     this.scene = new THREE.Scene();
 
     //Camera 
-    this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / innerHeight, 0.01, 1000);
+    this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / innerHeight, 0.01, 2500);
     this.camera.position.set(0, 0, 50)
 
     //Lights
