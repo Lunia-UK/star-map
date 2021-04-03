@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui';
 import System from './system';
 
@@ -17,6 +18,11 @@ export default class Scene {
     //Lights
     const pointLight = new THREE.PointLight(0xffffff, 0.7)
     this.scene.add(pointLight)
+
+    // Controls
+    this.controls = new OrbitControls(this.camera, this.canvas)
+    this.controls.enableDamping = true
+    this.controls.maxDistance = 800
 
     //Renderer
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
@@ -39,7 +45,10 @@ export default class Scene {
   }
 
   animate() {
-    requestAnimationFrame( () => this.animate() );
+    requestAnimationFrame( () => this.animate(
+      // Update controls
+      this.controls.update()
+    ) );
     this.renderer.render(this.scene, this.camera);
   }
 
