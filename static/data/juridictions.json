@@ -1,0 +1,69 @@
+{
+    "juridiction" : [
+        {
+            "id": "Hurston Dynamics",
+            "description": "",
+            "astre" :{
+                "astreName" : "Hurston",
+                "Xposition": 13410441,
+                "Yposition": 0,
+                "Zposition": 0,
+                "size":2000,
+                "texture": "hurston2.jpg",
+                "color": "rgb(202, 125, 0)"
+            }
+        },
+        {
+            "id": "Crusader Industries",
+            "description": "",
+            "astre" :{
+                "astreName" : "Crusader",
+                "Xposition":-18378987,
+                "Yposition": 0,
+                "Zposition": -2917765,
+                "size":5000,
+                "texture": "crusader2.jpg",
+                "color": "rgb(162, 0, 202)"
+            }
+        },
+        {
+            "id": "ArcCorp corporation",
+            "description": "",
+            "astre" :{
+                "astreName" : "ArcCorp",
+                "Xposition": 19267868,
+                "Yposition": 0,
+                "Zposition": 22121256,
+                "size":1600,
+                "texture": "arccorp.jpg",
+                "color": "rgb(218, 218, 218)"
+            }
+        },
+        {
+            "id": "MicroTech Corporation",
+            "description": "",
+            "astre" :{
+                "astreName" : "MicroTech",
+                "Xposition": 22744621,
+                "Yposition": 0,
+                "Zposition": -37255959,
+                "size":2000,
+                "texture": "microtech.jpg",
+                "color": "rgb(0, 155, 202)"
+            }
+        },
+        {
+            "id": "Shallow Frontier Station",
+            "description": "",
+            "astre" :{
+                "astreName" : "MicL1",
+                "Xposition": 20416175,
+                "Yposition": 0,
+                "Zposition": -33587889,
+                "size":2000,
+                "texture": "none",
+                "color": "rgb(0, 0, 0)"
+            }
+        }
+    ]
+}

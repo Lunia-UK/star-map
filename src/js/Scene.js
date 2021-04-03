@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui'
+import System from './system';
 
 export default class Scene {
   constructor(canvas) {
     this.canvas = canvas;
   }
+
   init(){
     this.scene = new THREE.Scene();
     //Camera 
@@ -16,18 +18,11 @@ export default class Scene {
     this.renderer.setSize(window.innerWidth, innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    this.makeSystem();
+    this.system = new System(this.scene);
+    this.system.init()
     this.initDatGUI();
     this.animate();
     this.resize();
-  }
-
-  makeSystem(){
-    // const system = new THREE.Object3D();
-    this.geometrySphere = new THREE.SphereBufferGeometry(1, 32, 32);
-    this.materialSphere = new THREE.MeshBasicMaterial({color: 0xffff80});
-    this.stanton = new THREE.Mesh(this.geometrySphere, this.materialSphere)
-    this.scene.add(this.stanton)
   }
 
   initDatGUI(){
@@ -35,9 +30,7 @@ export default class Scene {
     const cameraFolder = gui.addFolder('Camera');
     cameraFolder.add(this.camera.position, 'x').min(-25).max(25).step(1).name('position x')
     cameraFolder.add(this.camera.position, 'y').min(-25).max(25).step(1).name('position y')
-    cameraFolder.add(this.camera.position, 'z').min(10).max(150).step(5).name('position z')
-    const materialFolder = gui.addFolder('Material');
-    materialFolder.add(this.materialSphere, 'wireframe')
+    cameraFolder.add(this.camera.position, 'z').min(10).max(500).step(5).name('position z')
   }
 
   animate() {
