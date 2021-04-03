@@ -9,9 +9,14 @@ export default class Scene {
 
   init(){
     this.scene = new THREE.Scene();
+
     //Camera 
     this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / innerHeight, 0.01, 1000);
     this.camera.position.set(0, 0, 50)
+
+    //Lights
+    const pointLight = new THREE.PointLight(0xffffff, 0.7)
+    this.scene.add(pointLight)
 
     //Renderer
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });

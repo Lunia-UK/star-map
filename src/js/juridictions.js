@@ -24,7 +24,7 @@ export default class Juridictions {
         const texture = new THREE.TextureLoader().load('textures/' + loadTexture);
         const astreMesh = new THREE.Mesh(
             this.geometrySphere,
-            new THREE.MeshBasicMaterial({map: texture})
+            new THREE.MeshPhongMaterial({map: texture})
           )
         astreMesh.position.set(juridiction.Xposition / this.scale, juridiction.Yposition / this.scale, juridiction.Zposition / this.scale)
         astreMesh.scale.set(0.3,0.3,0.3)
