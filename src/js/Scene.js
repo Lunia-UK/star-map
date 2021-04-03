@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as dat from 'dat.gui'
+import * as dat from 'dat.gui';
 import System from './system';
 
 export default class Scene {

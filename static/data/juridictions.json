@@ -61,7 +61,7 @@
                 "Yposition": 0,
                 "Zposition": -33587889,
                 "size":2000,
-                "texture": "none",
+                "texture": null,
                 "color": "rgb(0, 0, 0)"
             }
         }

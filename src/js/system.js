@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui'
 import Juridictions from './juridictions'
+import Labels from './label'
 import GetData from './getData'
 
 export default class System {
   constructor(scene) {
     this.scene = scene
+    this.scale = 1300000
   }
 
   init() {
@@ -39,8 +41,10 @@ export default class System {
       "DOMContentLoaded",
       () => {
         const data = new GetData();
-        const juridictions = new Juridictions(this.scene,this.system, this.geometrySphere);
+        const juridictions = new Juridictions(this.scene, this.system, this.scale, this.geometrySphere);
+        const labels = new Labels(this.scene, this.system, this.scale);
         data.getData().then(dataJuridictions => juridictions.createJuridiction(dataJuridictions));
+        data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions))
       }
     )
   }
