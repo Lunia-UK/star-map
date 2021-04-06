@@ -1,11 +1,16 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import gsap from 'gsap'
 import * as dat from 'dat.gui';
 import System from './system';
 
+
 export default class Scene {
-  constructor(canvas) {
+  constructor(canvas, mouse) {
     this.canvas = canvas;
+    this.mouse = mouse;
+    this.juridictions = [];
+    this.currentIntersect = null
   }
 
   init(){
@@ -13,7 +18,7 @@ export default class Scene {
 
     //Camera 
     this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / innerHeight, 0.01, 2500);
-    this.camera.position.set(0, 0, 50)
+    this.camera.position.set(0, 25, 50)
 
     //Lights
     const pointLight = new THREE.PointLight(0xffffff, 0.7)
@@ -24,16 +29,20 @@ export default class Scene {
     this.controls.enableDamping = true
     this.controls.maxDistance = 800
 
+    // Raycaster
+    this.raycaster = new THREE.Raycaster();
+
     //Renderer
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setSize(window.innerWidth, innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    this.system = new System(this.scene);
+    this.system = new System(this.scene, this.juridictions);
     this.system.init()
     this.initDatGUI();
     this.animate();
     this.resize();
+    this.click();
   }
 
   initDatGUI(){
@@ -48,7 +57,28 @@ export default class Scene {
     requestAnimationFrame( () => this.animate(
       // Update controls
       this.controls.update()
-    ) );
+    ));
+    
+    this.raycaster.setFromCamera(this.mouse, this.camera)
+    
+    const objectToTest = this.juridictions
+    const intersects = this.raycaster.intersectObjects(objectToTest);
+    for(const intersect of intersects) {
+      // console.log(intersect);
+    }
+
+    if(intersects.length){
+      if( this.currentIntersect === null){
+          console.log('enter');
+      }
+      this.currentIntersect = intersects[0]
+  } else {
+      if( this.currentIntersect){
+        console.log('leave');
+      }
+      this.currentIntersect = null
+  }
+
     this.renderer.render(this.scene, this.camera);
   }
 
@@ -67,6 +97,19 @@ export default class Scene {
         // Update renderer
         this.renderer.setSize(this.width, this.height);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      },
+      false
+    )
+  };
+
+  click() {
+    window.addEventListener(
+      "click",
+      () => {
+        if(this.currentIntersect)
+        {
+          console.log(this.currentIntersect.object)
+        }
       },
       false
     )

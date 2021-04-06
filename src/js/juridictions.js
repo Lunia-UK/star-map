@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 
 export default class Juridictions {
-  constructor(scene, system, scale, geometry) {
+  constructor(scene, system, juridictions, scale, geometry) {
     this.scene = scene
     this.system = system
+    this.juridictions = juridictions
     this.geometrySphere = geometry
     this.scale = scale
   }
@@ -27,6 +28,7 @@ export default class Juridictions {
         astreMesh.position.set(juridiction.Xposition / this.scale, juridiction.Yposition / this.scale, juridiction.Zposition / this.scale)
         astreMesh.scale.set(0.3,0.3,0.3)
         this.system.add(astreMesh)
+        this.juridictions.push(astreMesh)
       }
     }
   }

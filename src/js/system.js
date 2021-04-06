@@ -5,9 +5,11 @@ import Labels from './label'
 import GetData from './getData'
 import Stars from './stars.js'
 
+
 export default class System {
-  constructor(scene) {
+  constructor(scene, juridictions) {
     this.scene = scene
+    this.juridictions = juridictions
     this.scale = 1300000
   }
 
@@ -39,7 +41,6 @@ export default class System {
   }
 
   animate() {
-    // this.makeSystem()
   }
 
   getData() {
@@ -47,7 +48,7 @@ export default class System {
       "DOMContentLoaded",
       () => {
         const data = new GetData();
-        const juridictions = new Juridictions(this.scene, this.system, this.scale, this.geometrySphere);
+        const juridictions = new Juridictions(this.scene, this.system, this.juridictions, this.scale, this.geometrySphere);
         const labels = new Labels(this.scene, this.system, this.scale);
         data.getData().then(dataJuridictions => juridictions.createJuridiction(dataJuridictions));
         data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions))
