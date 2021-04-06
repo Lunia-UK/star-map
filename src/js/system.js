@@ -7,9 +7,10 @@ import Stars from './stars.js'
 
 
 export default class System {
-  constructor(scene, juridictions) {
+  constructor(scene, juridictions, labels) {
     this.scene = scene
     this.juridictions = juridictions
+    this.labels = labels
     this.scale = 1300000
   }
 
@@ -49,7 +50,7 @@ export default class System {
       () => {
         const data = new GetData();
         const juridictions = new Juridictions(this.scene, this.system, this.juridictions, this.scale, this.geometrySphere);
-        const labels = new Labels(this.scene, this.system, this.scale);
+        const labels = new Labels(this.scene, this.system, this.labels, this.scale);
         data.getData().then(dataJuridictions => juridictions.createJuridiction(dataJuridictions));
         data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions))
       }

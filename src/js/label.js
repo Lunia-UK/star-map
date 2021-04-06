@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import createOrbit from './orbit'
 
 export default class Labels {
-  constructor(scene, system, scale) {
+  constructor(scene, system, labels, scale) {
     this.scene = scene
     this.system = system
+    this.labels = labels
     this.scale = scale
   }
 
@@ -32,6 +33,7 @@ export default class Labels {
         spriteLabel.position.set(juridiction.Xposition/ this.scale , juridiction.Yposition/ this.scale, juridiction.Zposition / this.scale);
         spriteLabel.scale.set(4,4,4);
         this.system.add( spriteLabel );
+        this.labels.push(spriteLabel)
     }
   }
 }

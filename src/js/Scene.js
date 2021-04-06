@@ -10,6 +10,7 @@ export default class Scene {
     this.canvas = canvas;
     this.mouse = mouse;
     this.juridictions = [];
+    this.labels = [];
     this.currentIntersect = null
   }
 
@@ -18,7 +19,7 @@ export default class Scene {
 
     //Camera 
     this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / innerHeight, 0.01, 2500);
-    this.camera.position.set(0, 25, 50)
+    this.camera.position.set(0, 0, 50)
 
     //Lights
     const pointLight = new THREE.PointLight(0xffffff, 0.7)
@@ -37,7 +38,7 @@ export default class Scene {
     this.renderer.setSize(window.innerWidth, innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    this.system = new System(this.scene, this.juridictions);
+    this.system = new System(this.scene, this.juridictions, this.labels);
     this.system.init()
     this.initDatGUI();
     this.animate();
@@ -50,7 +51,10 @@ export default class Scene {
     const cameraFolder = gui.addFolder('Camera');
     cameraFolder.add(this.camera.position, 'x').min(-25).max(25).step(1).name('position x')
     cameraFolder.add(this.camera.position, 'y').min(-25).max(25).step(1).name('position y')
-    cameraFolder.add(this.camera.position, 'z').min(10).max(500).step(5).name('position z')
+    cameraFolder.add(this.camera.position, 'z').min(-500).max(500).step(5).name('position z')
+    cameraFolder.add(this.camera.rotation, 'x').min(0).max(10).step(1).name('rotation x')
+    cameraFolder.add(this.camera.rotation, 'y').min(0).max(10).step(1).name('rotation y')
+    cameraFolder.add(this.camera.rotation, 'z').min(0).max(10).step(1).name('rotation z')
   }
 
   animate() {
@@ -61,7 +65,7 @@ export default class Scene {
     
     this.raycaster.setFromCamera(this.mouse, this.camera)
     
-    const objectToTest = this.juridictions
+    const objectToTest = this.labels
     const intersects = this.raycaster.intersectObjects(objectToTest);
     for(const intersect of intersects) {
       // console.log(intersect);
@@ -69,18 +73,19 @@ export default class Scene {
 
     if(intersects.length){
       if( this.currentIntersect === null){
-          console.log('enter');
+          // console.log('enter');
       }
       this.currentIntersect = intersects[0]
   } else {
       if( this.currentIntersect){
-        console.log('leave');
+        // console.log('leave');
       }
       this.currentIntersect = null
   }
 
     this.renderer.render(this.scene, this.camera);
   }
+  
 
   resize() {
     window.addEventListener(
@@ -107,8 +112,20 @@ export default class Scene {
       "click",
       () => {
         if(this.currentIntersect)
-        {
-          console.log(this.currentIntersect.object)
+        { 
+          let x = this.currentIntersect.object.position.x
+          let y = this.currentIntersect.object.position.y
+          let z = (this.currentIntersect.object.position.z)
+          console.log(x,y,z)
+          // this.controls.target = new THREE.Vector3(x, y, z)
+          // const controls = this.controls
+          gsap.to(this.camera.position, {
+            duration: 1,
+            x:x,
+            y:y,
+            z:z,
+          } )
+          // console.log(this.controls.enabled)
         }
       },
       false
