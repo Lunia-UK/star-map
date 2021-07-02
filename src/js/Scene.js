@@ -11,15 +11,17 @@ export default class Scene {
     this.mouse = mouse;
     this.juridictions = [];
     this.labels = [];
-    this.currentIntersect = null
+    this.currentIntersect = null;
+    this.clock = new THREE.Clock();
   }
 
   init(){
     this.scene = new THREE.Scene();
+    this.sceneSun = new THREE.Scene();
 
     //Camera 
     this.camera = new THREE.PerspectiveCamera(35, window.innerWidth / innerHeight, 0.01, 2500);
-    this.camera.position.set(0, 0, 50)
+    this.camera.position.set(0, 15, 50)
 
     //Lights
     const pointLight = new THREE.PointLight(0xffffff, 0.7)
@@ -38,8 +40,8 @@ export default class Scene {
     this.renderer.setSize(window.innerWidth, innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    this.system = new System(this.scene, this.juridictions, this.labels);
-    this.system.init()
+    this.system = new System(this.scene, this.juridictions, this.labels, this.sceneSun);
+    this.system.init();
     this.initDatGUI();
     this.animate();
     this.resize();
@@ -62,10 +64,19 @@ export default class Scene {
       // Update controls
       this.controls.update()
     ));
-    
+
+    //Time
+    this.elapsedTime = this.clock.getElapsedTime()
+
+    this.system.materialSun.uniforms.uTime.value = this.elapsedTime
+    this.system.materialPerlin.uniforms.uTime.value = this.elapsedTime
+
+    this.system.cubeCamera1.update( this.renderer, this.sceneSun );
+    this.system.materialSun.uniforms.uPerlin.value = this.system.cubeRenderTarget1.texture;
+
     this.raycaster.setFromCamera(this.mouse, this.camera)
     
-    const objectToTest = this.labels
+    const objectToTest = this.juridictions
     const intersects = this.raycaster.intersectObjects(objectToTest);
     for(const intersect of intersects) {
       // console.log(intersect);
@@ -116,16 +127,14 @@ export default class Scene {
           let x = this.currentIntersect.object.position.x
           let y = this.currentIntersect.object.position.y
           let z = (this.currentIntersect.object.position.z)
-          console.log(x,y,z)
-          // this.controls.target = new THREE.Vector3(x, y, z)
-          // const controls = this.controls
+          this.controls.target = new THREE.Vector3(x, y, z)
+          const controls = this.controls
           gsap.to(this.camera.position, {
             duration: 1,
             x:x,
             y:y,
             z:z,
           } )
-          // console.log(this.controls.enabled)
         }
       },
       false

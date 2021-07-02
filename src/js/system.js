@@ -4,11 +4,16 @@ import Juridictions from './juridictions'
 import Labels from './label'
 import GetData from './getData'
 import Stars from './stars.js'
+import fragmentShaderSunPerlin from '../shaders/sunPerlin/fragment.glsl'
+import vertexShaderSunPerlin from '../shaders/sunPerlin/vertex.glsl'
+import fragmentShaderSun from '../shaders/sun/fragment.glsl'
+import vertexShaderSun from '../shaders/sun/vertex.glsl'
 
 
 export default class System {
-  constructor(scene, juridictions, labels) {
+  constructor(scene, juridictions, labels, sceneSun) {
     this.scene = scene
+    this.sceneSun = sceneSun
     this.juridictions = juridictions
     this.labels = labels
     this.scale = 1300000
@@ -16,7 +21,6 @@ export default class System {
 
   init() {
     this.makeSystem();
-    this.makeStar()
     this.initDatGUI();
     this.animate();
     this.getData();
@@ -24,21 +28,60 @@ export default class System {
 
   makeSystem() {    
     this.system = new THREE.Object3D();
-    this.scene.add(this.system)
+    this.scene.add(this.system);
     this.geometrySphere = new THREE.SphereBufferGeometry(1, 32, 32);
-    this.materialSphere = new THREE.MeshBasicMaterial({color: 0xffff80});
-    this.stanton = new THREE.Mesh(this.geometrySphere, this.materialSphere)
-    this.system.add(this.stanton)
+    this.makeStars()
+    this.makeStar()
   }
 
-  makeStar(){
+  makeStar() {
+    this.geometryStar = new THREE.SphereGeometry(1, 32, 32)
+
+    this.materialSun = new THREE.ShaderMaterial({
+      vertexShader: vertexShaderSun,
+      fragmentShader: fragmentShaderSun,
+      uniforms: {
+        uTime: {value: 0},
+        uPerlin: {value: null},
+      },
+      side: THREE.DoubleSide,
+
+    })
+
+    this.sun = new THREE.Mesh(this.geometryStar, this.materialSun)
+    this.scene.add(this.sun)
+
+    this.cubeRenderTarget1 = new THREE.WebGLCubeRenderTarget( 256, {
+      format: THREE.RGBFormat,
+      generateMipmaps: true,
+      minFilter: THREE.LinearMipmapLinearFilter,
+      encoding: THREE.sRGBEncoding // temporary -- to prevent the material's shader from recompiling every frame
+    } );
+
+    this.cubeCamera1 = new THREE.CubeCamera( 0.1, 10, this.cubeRenderTarget1 );
+
+    this.materialPerlin = new THREE.ShaderMaterial({
+      vertexShader: vertexShaderSunPerlin,
+      fragmentShader: fragmentShaderSunPerlin,
+      uniforms: {
+        uTime: {value: 0},
+      },
+      side: THREE.DoubleSide,
+
+    })
+
+    this.perlin = new THREE.Mesh(this.geometryStar, this.materialPerlin)
+    this.sceneSun.add(this.perlin)
+  }
+
+  makeStars() {
     new Stars(this.scene);
   }
 
   initDatGUI() {
     const gui = new dat.GUI();
     const materialFolder = gui.addFolder('Material');
-    materialFolder.add(this.materialSphere, 'wireframe')
+    // materialFolder.add(this.materialSphere, 'wireframe');
   }
 
   animate() {
@@ -52,7 +95,7 @@ export default class System {
         const juridictions = new Juridictions(this.scene, this.system, this.juridictions, this.scale, this.geometrySphere);
         const labels = new Labels(this.scene, this.system, this.labels, this.scale);
         data.getData().then(dataJuridictions => juridictions.createJuridiction(dataJuridictions));
-        data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions))
+        data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions));
       }
     )
   }

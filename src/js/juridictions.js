@@ -24,11 +24,11 @@ export default class Juridictions {
         const astreMesh = new THREE.Mesh(
             this.geometrySphere,
             new THREE.MeshPhongMaterial({map: texture})
-          )
-        astreMesh.position.set(juridiction.Xposition / this.scale, juridiction.Yposition / this.scale, juridiction.Zposition / this.scale)
-        astreMesh.scale.set(0.3,0.3,0.3)
-        this.system.add(astreMesh)
-        this.juridictions.push(astreMesh)
+        );
+        astreMesh.position.set(juridiction.Xposition / this.scale, juridiction.Yposition / this.scale, juridiction.Zposition / this.scale);
+        astreMesh.scale.set(0.3,0.3,0.3);
+        this.system.add(astreMesh);
+        this.juridictions.push(astreMesh);
       }
     }
   }

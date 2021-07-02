@@ -7,7 +7,7 @@ export default class Stars {
   }
 
   createStar() {
-    this.particles = 30000;
+    this.particles = 50000;
     this.particlesGeometry = new THREE.BufferGeometry();
     // let positions = new Float32Array( particles * 3 );
     let positions = [];
@@ -25,7 +25,7 @@ export default class Stars {
         new THREE.Vector3(0, 0, 0)
       );
 
-      if (distanceParticules > 400) {
+      if (distanceParticules > 600) {
         // position
         positions[i] = x;
         positions[i + 1] = y;
@@ -47,7 +47,7 @@ export default class Stars {
         let rb = 0;
 
         let randomRedStar = Math.random();
-        if (randomRedStar < 0.3) {
+        if (randomRedStar < 0.1) {
           color.setRGB(rr, rg, rb);
         } else {
           color.setRGB(br, bg, bb);
