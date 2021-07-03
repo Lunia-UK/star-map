@@ -8,6 +8,7 @@ import fragmentShaderSunPerlin from '../shaders/sunPerlin/fragment.glsl'
 import vertexShaderSunPerlin from '../shaders/sunPerlin/vertex.glsl'
 import fragmentShaderSun from '../shaders/sun/fragment.glsl'
 import vertexShaderSun from '../shaders/sun/vertex.glsl'
+import asteroidBelt from "./asteroidBelt.js";
 
 
 export default class System {
@@ -32,6 +33,11 @@ export default class System {
     this.geometrySphere = new THREE.SphereBufferGeometry(1, 32, 32);
     this.makeStars()
     this.makeStar()
+    this.makeAsteroidBelt()
+  }
+
+  makeAsteroidBelt(){
+    this.asteroidBelt = new asteroidBelt(this.scene)
   }
 
   makeStar() {
