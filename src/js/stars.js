@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 export default class Stars {
-  constructor(scene) {
-    this.scene = scene;
+  constructor(system) {
+    this.system = system;
     this.createStar();
   }
 
@@ -73,6 +73,6 @@ export default class Stars {
     particlesMaterial.transparent = true;
     particlesMaterial.alphaMap = new THREE.TextureLoader().load('textures/stars/4.png');
     let particleSystem = new THREE.Points(this.particlesGeometry, particlesMaterial);
-    this.scene.add(particleSystem);
+    this.system.add(particleSystem);
   }
 }

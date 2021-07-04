@@ -5,8 +5,7 @@ export default class GetData {
       let data = await result.json();
       let dataJuridictions = data.juridiction;
       dataJuridictions = dataJuridictions.map(item => {
-        const {astreName, Xposition, Yposition, Zposition, size, texture, color} = item.astre;
-          return {astreName, Xposition, Yposition, Zposition, size , texture, color}
+        return item
       })
      return dataJuridictions;
     } catch (error) {

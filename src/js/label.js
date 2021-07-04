@@ -1,39 +1,30 @@
 import * as THREE from 'three';
-import createOrbit from './orbit'
 
 export default class Labels {
-  constructor(scene, system, labels, scale) {
-    this.scene = scene
-    this.system = system
+  constructor(juridiction, labels, scale, data) {
+    this.juridiction = juridiction
     this.labels = labels
     this.scale = scale
+    this.data = data
+    this.createLabel(this.data)
   }
 
-  createLabel(dataJuridictions){
-    for(const juridiction of dataJuridictions){
-      createOrbit(this.scene, this.scale, juridiction.Xposition, juridiction.Zposition, juridiction.color)
+  createLabel(data){
       function initCircleMaterial( text ) {
         let canvas = document.createElement( 'canvas' );
-        canvas.width = 250;
-        canvas.height = 250;
+        canvas.width = 160;
+        canvas.height = 80;
         let ctx = canvas.getContext( '2d' );
-        ctx.beginPath();
-        ctx.arc(125, 125, 20, 0, 2 * Math.PI);
-        ctx.strokeStyle = juridiction.color;
-        ctx.lineWidth = 4;
-        ctx.stroke();
         ctx.fillStyle = 'white';
-        ctx.font = `50px Arial`;
-        ctx.textBaseline = 'middle';
-        ctx.fillText( text, 25, 80);
+        ctx.font = `25px Azonix`;
+        ctx.textBaseline = 'left';
+        ctx.fillText( text, 0, 20);
         let map = new THREE.CanvasTexture( canvas );
         return new THREE.SpriteMaterial( { map } )
       }
-      let spriteLabel = new THREE.Sprite( initCircleMaterial(juridiction.astreName));
-      spriteLabel.position.set(juridiction.Xposition/ this.scale , juridiction.Yposition/ this.scale, juridiction.Zposition / this.scale);
-      spriteLabel.scale.set(4,4,4);
-      this.system.add( spriteLabel );
-      this.labels.push(spriteLabel)
-    }
+      this.spriteLabel = new THREE.Sprite( initCircleMaterial( data.id));
+      this.spriteLabel.name = data.id + " Label"
+      this.spriteLabel.scale.set(1.5,1.5,1.5);
+      this.juridiction.add( this.spriteLabel );
   }
 }

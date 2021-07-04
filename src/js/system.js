@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui'
 import Juridictions from './juridictions'
-import Labels from './label'
+// import Labels from './label'
 import GetData from './getData'
 import Stars from './stars.js'
 import fragmentShaderSunPerlin from '../shaders/sunPerlin/fragment.glsl'
@@ -12,23 +12,22 @@ import asteroidBelt from "./asteroidBelt.js";
 
 
 export default class System {
-  constructor(scene, juridictions, labels, sceneSun) {
+  constructor(scene, juridictions, juridictionsMesh, labels, sceneSun) {
     this.scene = scene
     this.sceneSun = sceneSun
     this.juridictions = juridictions
+    this.juridictionsMesh = juridictionsMesh
     this.labels = labels
     this.scale = 1300000
   }
 
   init() {
     this.makeSystem();
-    this.initDatGUI();
-    this.animate();
     this.getData();
   }
 
   makeSystem() {    
-    this.system = new THREE.Object3D();
+    this.system = new THREE.Group();
     this.scene.add(this.system);
     this.geometrySphere = new THREE.SphereBufferGeometry(1, 32, 32);
     this.makeStars()
@@ -37,7 +36,7 @@ export default class System {
   }
 
   makeAsteroidBelt(){
-    this.asteroidBelt = new asteroidBelt(this.scene)
+    this.asteroidBelt = new asteroidBelt(this.system)
   }
 
   makeStar() {
@@ -55,7 +54,7 @@ export default class System {
     })
 
     this.sun = new THREE.Mesh(this.geometryStar, this.materialSun)
-    this.scene.add(this.sun)
+    this.system.add(this.sun)
 
     this.cubeRenderTarget1 = new THREE.WebGLCubeRenderTarget( 256, {
       format: THREE.RGBFormat,
@@ -81,16 +80,7 @@ export default class System {
   }
 
   makeStars() {
-    new Stars(this.scene);
-  }
-
-  initDatGUI() {
-    const gui = new dat.GUI();
-    const materialFolder = gui.addFolder('Material');
-    // materialFolder.add(this.materialSphere, 'wireframe');
-  }
-
-  animate() {
+    this.stars = new Stars(this.system);
   }
 
   getData() {
@@ -98,10 +88,10 @@ export default class System {
       "DOMContentLoaded",
       () => {
         const data = new GetData();
-        const juridictions = new Juridictions(this.scene, this.system, this.juridictions, this.scale, this.geometrySphere);
-        const labels = new Labels(this.scene, this.system, this.labels, this.scale);
+        const juridictions = new Juridictions(this.scene, this.system, this.juridictions, this.juridictionsMesh, this.scale, this.geometrySphere);
+        // const labels = new Labels(this.scene, this.system, this.labels, this.scale);
         data.getData().then(dataJuridictions => juridictions.createJuridiction(dataJuridictions));
-        data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions));
+        // data.getData().then(dataJuridictions => labels.createLabel(dataJuridictions));
       }
     )
   }
