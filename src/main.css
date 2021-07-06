@@ -1,9 +1,16 @@
+@font-face {
+    font-family: "Azonix";
+    src: url("./font/Azonix.woff2") format("woff2"),
+    url("./font/Azonix.woff2") format("woff");
+}
+
 html,
 body
 { 
     width: 100%;
     height: 100vh;
-    overflow: hidden;;
+    overflow: hidden;
+    font-family: "Azonix";
 }
 
 .canvas
@@ -12,4 +19,5 @@ body
     top: 0;
     left: 0;
     outline: none;
+    color: rgb(82, 186, 198)
 }

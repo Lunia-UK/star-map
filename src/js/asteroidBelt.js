@@ -15,7 +15,7 @@ export default class asteroidBelt {
         this.n2 = this.n / 2;
         for (let i = 0; i < this.particles; i += 3) {
             this.x = Math.random() * this.n - this.n2;
-            this.y = Math.random() * (-.2 - .2 ) + .2 ;
+            this.y = Math.random() * (-.15 - .15 ) + .15 ;
             this.z = Math.random() * this.n - this.n2;
 
             this.positionVector = new THREE.Vector3(this.x, this.y, this.z);
@@ -42,7 +42,8 @@ export default class asteroidBelt {
         this.particlesMaterial = new THREE.PointsMaterial();
         this.particlesMaterial.size = 0.2;
         this.particlesMaterial.transparent = true;
-        this.particlesMaterial.alphaMap = new THREE.TextureLoader().load('textures/stars/1.png');
+        this.particlesMaterial.alphaTest = 0.0001
+        this.particlesMaterial.alphaMap = new THREE.TextureLoader().load('textures/stars/asteroide.png');
         this.asteroidBelt = new THREE.Points(this.particlesGeometry, this.particlesMaterial);
         this.system.add(this.asteroidBelt);
     }

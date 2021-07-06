@@ -35,7 +35,7 @@ export default class Juridictions {
         new THREE.MeshPhongMaterial({map: this.texture})
     );
     this.astreMesh.name = dataJuridiction.id + " Mesh"
-    this.astreMesh.scale.set(0.4,0.4,0.4);
+    this.astreMesh.scale.set(0.5,0.5,0.5);
     this.juridiction.add(this.astreMesh);
     this.juridictionsMesh.push(this.astreMesh);
     this.juridictions.push(this.juridiction);

@@ -24,6 +24,7 @@ export default class Labels {
       }
       this.spriteLabel = new THREE.Sprite( initCircleMaterial( data.id));
       this.spriteLabel.name = data.id + " Label"
+      this.spriteLabel.transparent = true
       this.spriteLabel.scale.set(1.5,1.5,1.5);
       this.juridiction.add( this.spriteLabel );
   }
