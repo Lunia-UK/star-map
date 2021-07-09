@@ -4,13 +4,17 @@
     url("./font/Azonix.woff2") format("woff");
 }
 
+/*font-family: 'Montserrat', sans-serif;*/
+/*font-family: 'Rajdhani', sans-serif;*/
+
 html,
 body
 { 
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    font-family: "Azonix";
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .canvas
@@ -20,4 +24,29 @@ body
     left: 0;
     outline: none;
     color: rgb(82, 186, 198)
+}
+
+.infoText {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+.infoText :is(.type, .systemName, .coords, .area ) {
+    margin: 3px 0;
+}
+
+.systemName {
+    font-size: 1.5rem;
+    /*font-family: Rajdhani, sans-serif;*/
+    font-weight: 500;
+    margin:0;
+    text-transform: uppercase;
+}
+
+.coords{
+    opacity: .75;
 }

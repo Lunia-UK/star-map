@@ -1,13 +1,9 @@
 export default class GetData {
   async getData(){
     try {
-      let result = await fetch('./data/juridictions.json');
+      let result = await fetch('./data/stanton.json');
       let data = await result.json();
-      let dataJuridictions = data.juridiction;
-      dataJuridictions = dataJuridictions.map(item => {
-        return item
-      })
-     return dataJuridictions;
+     return data;
     } catch (error) {
       console.log(error)
     }

@@ -4,6 +4,7 @@ import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls
 import gsap from 'gsap'
 import * as dat from 'dat.gui';
 import System from './system';
+import GetData from "./getData";
 
 export default class Scene {
   constructor(canvas, mouse) {
@@ -13,10 +14,13 @@ export default class Scene {
     this.juridictionsMesh = [];
     this.labels = [];
     this.currentIntersect = null;
+    this.objectFocus = null;
     this.clock = new THREE.Clock();
+    this.system = null
   }
 
   init(){
+    this.getData()
     this.scene = new THREE.Scene();
     this.sceneSun = new THREE.Scene();
 
@@ -31,13 +35,13 @@ export default class Scene {
     // Controls
     this.controls = new OrbitControls(this.camera, this.canvas)
 
-    this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.1;
-    this.controls.screenSpacePanning = true;
+    this.controls.enableDamping = true
 
-    this.controls.enableZoom = false;
+    this.controls.dampingFactor = 0.1
+    this.controls.screenSpacePanning = true
+    this.controls.enableZoom = false
 
-    this.controls.rotateSpeed = 0.5;
+    this.controls.rotateSpeed = 0.5
 
     // this.controls.minDistance = 100;
     this.controls.maxDistance = 500;
@@ -57,14 +61,37 @@ export default class Scene {
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setSize(window.innerWidth, innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    this.system = new System(this.scene, this.juridictions, this.juridictionsMesh, this.labels, this.sceneSun);
-    this.system.init();
-    this.initDatGUI();
-    this.animate(this.juridictions);
+    this.renderer.sortObjects = false;
     this.resize();
-    this.click();
+
+    this.controls.addEventListener('change', () => {
+      if(this.objectFocus && !this.animationInProgress){
+        this.distance = this.camera.position.distanceTo( this.objectFocus.parent.position );
+        if (this.distance > 20) {
+          this.objectFocus = null
+          this.system.typeText.innerText = 'System'
+          this.system.systemNameText.innerText = 'Stanton'
+        }
+      }
+    })
   }
+
+  getData() {
+    window.addEventListener(
+        "DOMContentLoaded",
+        () => {
+          const data = new GetData();
+          this.system = new System(this.scene, this.juridictions, this.juridictionsMesh, this.labels, this.sceneSun);
+          data.getData().then((datajurisdictions) => {
+            this.system.makeSystem(datajurisdictions)
+            this.initDatGUI()
+            this.animate(this.juridictions)
+            this.click();
+          });
+        }
+    )
+  }
+
 
   initDatGUI(){
     const gui = new dat.GUI();
@@ -83,19 +110,18 @@ export default class Scene {
 
   }
 
-
   animate() {
 
     requestAnimationFrame( () => this.animate(
         // Update controls
-        // this.controls.update()
+        this.controls.update()
     ));
     let target = this.controls.target;
     this.controls.update();
     this.controls2.target.set(target.x, target.y, target.z);
     this.controls2.update();
-    //Time
 
+    //Time
     this.elapsedTime = this.clock.getElapsedTime()
     this.system.materialSun.uniforms.uTime.value = this.elapsedTime
 
@@ -151,20 +177,29 @@ export default class Scene {
     window.addEventListener(
         "click",
         () => {
-          if(this.currentIntersect)
+          if(this.currentIntersect && this.objectFocus !== this.currentIntersect.object)
           {
-            console.log(this.currentIntersect)
+            this.objectFocus = this.currentIntersect.object;
             let x = this.currentIntersect.object.parent.position.x
             let y = this.currentIntersect.object.parent.position.y
             let z = (this.currentIntersect.object.parent.position.z)
             this.controls.target = new THREE.Vector3(x, y, z)
             const controls = this.controls
+            this.system.systemNameText.innerText = this.objectFocus.name
+            this.animationInProgress = true
             gsap.to(this.camera.position, {
               duration: 1,
               x:x,
               y:y ,
-              z:z +2,
-            } )
+              z:z +3,
+            })
+            setTimeout(() => {
+              this.animationInProgress = false
+            }, 1000);
+            this.system.systemNameText.innerText = this.objectFocus.name
+            this.system.typeText.innerText = this.objectFocus.parent.type
+            this.system.coordsText.innerText = `${this.objectFocus.parent.position.x.toPrecision(8)}, ${this.objectFocus.parent.position.z.toPrecision(8)}`
+            this.system.areaText.innerText = this.objectFocus.parent.area
           }
         },
         false
