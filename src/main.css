@@ -6,27 +6,27 @@
 
 /*font-family: 'Montserrat', sans-serif;*/
 /*font-family: 'Rajdhani', sans-serif;*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body
-{ 
-    width: 100%;
-    height: 100vh;
+{
     overflow: hidden;
-    font-weight: 300;
     font-family: 'Montserrat', sans-serif;
 }
 
-.canvas
+.experience
 {
     position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
-    color: rgb(82, 186, 198)
+    width: 100vw;
+    height: 100vh;
 }
 
-.infoText {
+#containerInfo {
     position: absolute;
     z-index: 2;
     display: flex;
@@ -35,7 +35,7 @@ body
     color: #fff;
 }
 
-.infoText :is(.type, .systemName, .coords, .area ) {
+#containerInfo :is(.type, .systemName, .coords, .area ) {
     margin: 3px 0;
 }
 
