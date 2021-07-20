@@ -1,5 +1,5 @@
 {
-    "systemName": "stanton",
+    "systemName": "Stanton",
     "coords": {
         "lat": 50.164863,
         "long": 43.621486
@@ -160,9 +160,9 @@
                 },
                 {
                     "name": "Euterpe",
-                    "Xposition": 0.6,
+                    "Xposition": -0.6,
                     "Yposition": 0,
-                    "Zposition": 0.6,
+                    "Zposition": -0.6,
                     "size":1000,
                     "texture": "",
                     "color": "rgb(82, 186, 198)"

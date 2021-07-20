@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 
 export default class asteroidBelt {
-    constructor(system) {
-        this.system = system;
+    constructor(group) {
+        this.experience = window.experience
+        this.resources = this.experience.resources
+        this.debug = this.experience.debug
+        this.group = group;
         this.createBelt();
     }
 
@@ -43,8 +46,15 @@ export default class asteroidBelt {
         this.particlesMaterial.size = 0.2;
         this.particlesMaterial.transparent = true;
         this.particlesMaterial.alphaTest = 0.0001
-        this.particlesMaterial.alphaMap = new THREE.TextureLoader().load('textures/stars/asteroide.png');
+        this.particlesMaterial.alphaMap = this.resources.items.asteroidTexture
+        this.particlesMaterial.opacity = 0.8
         this.asteroidBelt = new THREE.Points(this.particlesGeometry, this.particlesMaterial);
-        this.system.add(this.asteroidBelt);
+        this.group.add(this.asteroidBelt);
+
+        // Debug
+        if(this.debug) {
+            const asteroidBeltFolder = this.debug.spaceFolder.addFolder('AsteroidBelt')
+            asteroidBeltFolder.add(this.asteroidBelt, 'visible' )
+        }
     }
 }
