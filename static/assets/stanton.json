@@ -1,0 +1,205 @@
+{
+    "systemName": "Stanton",
+    "coords": {
+        "lat": 50.164863,
+        "long": 43.621486
+    },
+    "area": "UEE",
+    "jurisdictions" : [
+        {
+            "id": "Hurston Dynamics",
+            "description": "",
+            "area": "UEE",
+            "astre" :{
+                "astreName" : "Hurston",
+                "Xposition": 13410441,
+                "Yposition": 0,
+                "Zposition": 0,
+                "size":2000,
+                "texture": "hurston2.jpg",
+                "color": "rgb(82, 186, 198)",
+                "focusColor": "rgb(220, 220, 220)"
+            },
+            "moons": [
+                {
+                    "name": "Arial",
+                    "Xposition": 1,
+                    "Yposition": 0,
+                    "Zposition": 1,
+                    "size":1000,
+                    "texture": "arial.jpg",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Ita",
+                    "Xposition": -0.6,
+                    "Yposition": 0,
+                    "Zposition": 1,
+                    "size":1000,
+                    "texture": "ita.jpg",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Aberdeen",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": -0.8,
+                    "size":1000,
+                    "texture": "aberdeen.jpg",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                }
+            ]
+        },
+        {
+            "id": "Crusader Industries",
+            "description": "",
+            "area": "UEE",
+            "astre" :{
+                "astreName" : "Crusader",
+                "Xposition":-18378987,
+                "Yposition": 0,
+                "Zposition": -2917765,
+                "size":5000,
+                "texture": "crusader2.jpg",
+                "color": "rgb(82, 186, 198)",
+                "focusColor": "rgb(220, 220, 220)"
+            },
+            "moons": [
+                {
+                    "name": "Cellin",
+                    "Xposition": 1,
+                    "Yposition": 0,
+                    "Zposition": 1,
+                    "size":1000,
+                    "texture": "yela.jpg",
+                    "color": "rgba(82, 186, 198, 0.2)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Yela",
+                    "Xposition": -0.6,
+                    "Yposition": 0,
+                    "Zposition": 1,
+                    "size":1000,
+                    "texture": "yela.jpg",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Daymar",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": -0.8,
+                    "size":1000,
+                    "texture": "daymar.jpg",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                }
+            ]
+        },
+        {
+            "id": "ArcCorp corporation",
+            "description": "",
+            "area": "UEE",
+            "astre" :{
+                "astreName" : "ArcCorp",
+                "Xposition": 19267868,
+                "Yposition": 0,
+                "Zposition": 22121256,
+                "size":1600,
+                "texture": "arccorp.jpg",
+                "color": "rgb(82, 186, 198)",
+                "focusColor": "rgb(220, 220, 220)"
+            },
+            "moons": [
+                {
+                    "name": "Wala",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": -0.8,
+                    "size":1000,
+                    "texture": "",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Lyria",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": 1.8,
+                    "size":1000,
+                    "texture": "",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                }
+            ]
+        },
+        {
+            "id": "MicroTech Corporation",
+            "description": "",
+            "area": "UEE",
+            "astre" :{
+                "astreName" : "MicroTech",
+                "Xposition": 22744621,
+                "Yposition": 0,
+                "Zposition": -37255959,
+                "size":2000,
+                "texture": "microtech.jpg",
+                "color": "rgb(82, 186, 198)",
+                "focusColor": "rgb(220, 220, 220)"
+            },
+            "moons": [
+                {
+                    "name": "Calliope",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": -0.8,
+                    "size":1000,
+                    "texture": "",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Clio",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": 1.8,
+                    "size":1000,
+                    "texture": "",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Euterpe",
+                    "Xposition": 0.6,
+                    "Yposition": 0,
+                    "Zposition": 0.6,
+                    "size":1000,
+                    "texture": "",
+                    "color": "rgb(82, 186, 198)",
+                    "focusColor": "rgb(220, 220, 220)"
+                }
+            ]
+        },
+        {
+            "id": "Shallow Frontier Station",
+            "description": "",
+            "area": "UEE",
+            "astre" :{
+                "astreName" : "MicL1",
+                "Xposition": 20416175,
+                "Yposition": 0,
+                "Zposition": -33587889,
+                "size":2000,
+                "texture": null,
+                "color": "rgb(0, 0, 0)",
+                "focusColor": "rgb(220, 220, 220)"
+            },
+            "moons": [
+            ]
+        }
+    ]
+}
