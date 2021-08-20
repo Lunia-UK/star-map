@@ -1,4 +1,4 @@
-#Star map
+# Star map
 Informative and interactive 3D star map for the Star Citizen game.
 
 ## Objective of the project
@@ -14,23 +14,23 @@ Technology used: Three.js, GLSL
 
 ### Desktop version 
 
-![Desktop Mock-Up](https://github.com/Lunia-UK/star-map/blob/master/static/img/Yella.png?raw=true)
+![Desktop Mock-Up](https://github.com/Lunia-UK/star-map/blob/development/static/img/yella.jpg?raw=true)
 
-![Desktop Mock-Up](https://github.com/Lunia-UK/star-map/blob/master/static/img/Yella.png?raw=true)
+![Desktop Mock-Up](https://github.com/Lunia-UK/star-map/blob/development/static/img/delamar.jpg?raw=true)
 
 
 ### Mobile version 
 
-![Mobile Mock-Up](https://github.com/Lunia-UK/star-map/blob/master/static/img/mock-upmobile2.png?raw=true)
+![Mobile Mock-Up](https://github.com/Lunia-UK/star-map/blob/development/static/img/mock-upmobile2.png?raw=true)
 
-![Mobile Mock-Up](https://github.com/Lunia-UK/star-map/blob/master/static/img/mock-upmobile1.png?raw=true)
+![Mobile Mock-Up](https://github.com/Lunia-UK/star-map/blob/development/static/img/mock-upmobile1.png?raw=true)
 
 
 ## Preview 
 
-![Crusader Preview](https://github.com/Lunia-UK/star-map/blob/master/static/img/crusader.png?raw=true)
+![Crusader Preview](https://github.com/Lunia-UK/star-map/blob/development/static/img/crusader.png?raw=true)
 
-![Sun Preview](https://github.com/Lunia-UK/star-map/blob/master/static/img/sun.png?raw=true)
+![Sun Preview](https://github.com/Lunia-UK/star-map/blob/development/static/img/sun.PNG?raw=true)
 
 
 ## Setup
