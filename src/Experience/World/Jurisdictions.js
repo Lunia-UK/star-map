@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import Planet from "./Jurisdictions/planet";
-import Moon from "./Jurisdictions/moon";
+import Planet from "./Jurisdictions/Planet";
+import Moon from "./Jurisdictions/Moon";
 import Orbit from "./Orbit";
 
 export default class Jurisdiction {
