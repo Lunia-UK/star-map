@@ -27,6 +27,15 @@ export default class World {
     }
 
     update() {
+        if(this.system)
+           for(const jurisdiction of this.system.jurisdictions){
+               this.distance = this.experience.camera.instance.position.distanceTo( jurisdiction.jurisdictionGroup.position )
+               if(this.distance < 100 && this.distance > 5  ) {
+                   jurisdiction.planet.astreMesh.scale.x = this.distance / 10
+                   jurisdiction.planet.astreMesh.scale.y = this.distance / 10
+                   jurisdiction.planet.astreMesh.scale.z = this.distance / 10
+               }
+           }
     }
 
     destroy() {

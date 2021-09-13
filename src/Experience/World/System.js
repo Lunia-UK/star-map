@@ -30,7 +30,11 @@ export default class System {
 
 
     setJurisdictions() {
-        this.jurisdictions = new Jurisdiction(this.system, this.data)
+        this.jurisdictions = []
+        for(const dataJurisdiction of this.data.jurisdictions ){
+            this.jurisdiction = new Jurisdiction(this.system, dataJurisdiction)
+            this.jurisdictions.push(this.jurisdiction)
+        }
     }
 
     setStars() {

@@ -50,6 +50,15 @@
                     "texture": "aberdeen.jpg",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
+                },
+                {
+                    "name": "Magda",
+                    "Xposition": -0.6,
+                    "Yposition": 0,
+                    "Zposition": -1.6,
+                    "size":1000,
+                    "texture": "aberdeen.jpg",
+                    "color": "rgb(82, 186, 198)"
                 }
             ]
         },
@@ -70,7 +79,7 @@
             "moons": [
                 {
                     "name": "Cellin",
-                    "Xposition": 1,
+                    "Xposition": -0.6,
                     "Yposition": 0,
                     "Zposition": 1,
                     "size":1000,
@@ -80,9 +89,9 @@
                 },
                 {
                     "name": "Yela",
-                    "Xposition": -0.6,
+                    "Xposition": -0.3,
                     "Yposition": 0,
-                    "Zposition": 1,
+                    "Zposition": -1.8,
                     "size":1000,
                     "texture": "yela.jpg",
                     "color": "rgb(82, 186, 198)",
@@ -90,9 +99,9 @@
                 },
                 {
                     "name": "Daymar",
-                    "Xposition": 0.6,
+                    "Xposition": 1.6,
                     "Yposition": 0,
-                    "Zposition": -0.8,
+                    "Zposition": -1.8,
                     "size":1000,
                     "texture": "daymar.jpg",
                     "color": "rgb(82, 186, 198)",
@@ -182,23 +191,6 @@
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
                 }
-            ]
-        },
-        {
-            "id": "Shallow Frontier Station",
-            "description": "",
-            "area": "UEE",
-            "astre" :{
-                "astreName" : "MicL1",
-                "Xposition": 20416175,
-                "Yposition": 0,
-                "Zposition": -33587889,
-                "size":2000,
-                "texture": null,
-                "color": "rgb(0, 0, 0)",
-                "focusColor": "rgb(220, 220, 220)"
-            },
-            "moons": [
             ]
         }
     ]

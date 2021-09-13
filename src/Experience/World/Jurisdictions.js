@@ -3,46 +3,39 @@ import Planet from "./Jurisdictions/planet";
 import Moon from "./Jurisdictions/moon";
 import Orbit from "./Orbit";
 
-export default class Jurisdictions {
-    constructor(systemGroup, data, _options) {
+export default class Jurisdiction {
+    constructor(system, data, _options) {
         this.experience = window.experience
         this.config = this.experience.config
         this.scene = this.experience.scene
         this.debug = this.experience.debug
-        this.system = systemGroup
+        this.system = system
         this.data = data
-        this.scale = 1300000
+        this.scale = 70000
 
-        this.setJuridiction()
+        this.setJurisdiction()
     }
 
-    setJuridiction() {
-        // Debug
-        if(this.debug) {
-            this.jurisdictionFolder = this.debug.spaceFolder.addFolder('Juridictions')
-        }
-        for(const dataJurisdiction of this.data.jurisdictions ){
-            if(dataJurisdiction.astre.texture !== null){
-                this.jurisdiction = new THREE.Group();
-                this.jurisdiction.name = dataJurisdiction.id;
-                this.jurisdiction.type = 'Jurisdiction';
-                this.jurisdiction.area = dataJurisdiction.area
-                this.jurisdiction.position.x = dataJurisdiction.astre.Xposition / this.scale;
-                this.jurisdiction.position.y = dataJurisdiction.astre.Yposition / this.scale;
-                this.jurisdiction.position.z = dataJurisdiction.astre.Zposition / this.scale;
-                this.system.add(this.jurisdiction);
-                this.planet = new Planet(this.jurisdiction, dataJurisdiction)
-                this.paramOrbit = {
-                    color: dataJurisdiction.astre.color
-                }
-                this.orbit = new Orbit(this.jurisdiction, this.scale, dataJurisdiction.astre.Xposition, dataJurisdiction.astre.Zposition, dataJurisdiction.astre.color, dataJurisdiction.astre.focusColor)
-                this.moon = new Moon(this.jurisdiction, dataJurisdiction.moons)
+    setJurisdiction() {
+        this.jurisdictionGroup = new THREE.Group()
+        this.jurisdictionGroup.name = this.data.id
+        this.jurisdictionGroup.type = 'Jurisdiction'
+        this.jurisdictionGroup.area = this.data.area
+        this.name = this.data.id
+        this.jurisdictionGroup.position.x = this.data.astre.Xposition / this.scale
+        this.jurisdictionGroup.position.y = this.data.astre.Yposition / this.scale
+        this.jurisdictionGroup.position.z = this.data.astre.Zposition / this.scale
+        this.planet = new Planet(this.jurisdictionGroup, this.data)
+        this.orbit = new Orbit(this.jurisdictionGroup, this.scale, this.data.astre.Xposition, this.data.astre.Zposition, this.data.astre.color, this.data.astre.focusColor)
 
-
-                // this.createMoons(dataJurisdiction.moons)
-            }
+        this.moons = []
+        for(const dataMoon of this.data.moons) {
+            const moon =  new Moon(this.jurisdictionGroup, dataMoon)
+            this.moons.push(moon)
         }
+        this.system.add(this.jurisdictionGroup)
     }
+
 
     resize() {
     }

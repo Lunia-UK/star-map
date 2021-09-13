@@ -24,7 +24,7 @@ export default class CreateOrbit  {
         false,            // aClockwise
         0                 // aRotation
     );
-    this.pointsOrbit = this.curveOrbit.getPoints( 100 );
+    this.pointsOrbit = this.curveOrbit.getPoints( 150 );
     this.geometryOrbit = new THREE.BufferGeometry().setFromPoints( this.pointsOrbit );
     this.materialOrbit = new THREE.LineBasicMaterial( {
       color : this.color,

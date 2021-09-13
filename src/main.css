@@ -33,6 +33,7 @@ body
     flex-direction: column;
     justify-content: center;
     color: #fff;
+    margin: 10px;
 }
 
 #containerInfo :is(.type, .systemName, .coords, .area ) {

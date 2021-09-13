@@ -36,9 +36,7 @@ export default class Raycaster {
             for(const intersect of this.intersects) {
                 if(this.intersects.length && this.objectFocus !== this.intersects[0].object) {
                     this.currentIntersect = this.intersects[0]
-                    this.currentPlanetWireframe = intersect.object.parent.children[1]
-                    this.currentOrbit = intersect.object.parent.children[2]
-                    this.currentPlanetWireframe.visible = true
+                    this.currentOrbit = intersect.object.parent.children[1]
                     this.currentOrbit.material.color = new THREE.Color(this.currentOrbit.focusColor)
                 } else {
                     this.currentIntersect = null
@@ -46,9 +44,7 @@ export default class Raycaster {
             }
             for(const object of this.objectToTest) {
                 if(!this.intersects.find(intersect => intersect.object === object)) {
-                    this.currentPlanetWireframe = object.parent.children[1]
-                    this.currentOrbit = object.parent.children[2]
-                    this.currentPlanetWireframe.visible = false
+                    this.currentOrbit = object.parent.children[1]
                     if(object !== this.objectFocus){
                         this.currentOrbit.material.color = new THREE.Color(this.currentOrbit.color)
                     }
@@ -91,16 +87,17 @@ export default class Raycaster {
                     this.y = this.currentIntersect.object.parent.position.y
                     this.z = this.currentIntersect.object.parent.position.z
                     gsap.to(this.camera.modes.debug.instance.position, {
-                        duration: 1,
+                        duration: 1.5,
                         x: this.x,
-                        y: this.y ,
-                        z: this.z + 3,
+                        y: this.y + 0.75,
+                        z: this.z + 5,
                     })
                     setTimeout(() => {
                         this.animationInProgress = false
-                    }, 1000);
+                    }, 1500);
                     this.objectFocusPosition = this.objectFocus.parent.position.clone()
                     this.camera.modes.debug.orbitControls.target = this.objectFocusPosition
+                    console.log(this.currentIntersect.object)
                     this.infoElements[0].innerText = this.currentIntersect.object.parent.type
                     this.infoElements[1].innerText = this.currentIntersect.object.parent.name
                     this.infoElements[2].innerText = `${this.objectFocus.parent.position.x.toPrecision(8)}, ${this.objectFocus.parent.position.z.toPrecision(8)}`

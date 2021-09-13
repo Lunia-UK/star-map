@@ -17,7 +17,7 @@ export default class Stars {
     let positions = [];
     this.colors = new Float32Array(this.particles.number * 3);
     this.color = new THREE.Color();
-    this.n = 2500
+    this.n = 3500
     this.n2 = this.n / 2;
     for (let i = 0; i < this.particles.number; i += 3) {
       this.x = Math.random() * this.n - this.n2;
@@ -29,7 +29,7 @@ export default class Stars {
         new THREE.Vector3(0, 0, 0)
       );
 
-      if (this.distanceParticules > 900) {
+      if (this.distanceParticules > 1500) {
         // position
         positions[i] = this.x;
         positions[i + 1] = this.y;

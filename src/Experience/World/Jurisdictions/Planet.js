@@ -20,37 +20,16 @@ export default class Planet {
         this.astreMesh = new THREE.Mesh(
             new THREE.SphereGeometry(1, 32, 32, 1),
             new THREE.MeshPhongMaterial({
-                map: this.resources.items.microtechTexture,
-                opacity: 0.9,
+                opacity: 1,
                 transparent: true,
             })
         );
+        const textureMap = this.data.astre.astreName.toLowerCase() + 'Texture'
+        this.astreMesh.material.map = this.resources.items[textureMap]
         this.astreMesh.name = this.data.astre.astreName
-        this.astreMesh.scale.set(0.5,0.5,0.5);
+        this.astreMesh.scale.set(10,10,10);
         this.jurisdiction.add(this.astreMesh)
         this.raycaster.objectToTest.push(this.astreMesh)
-
-        this.setWirefrane()
-    }
-
-    setWirefrane() {
-        this.astreWireFrame = new THREE.Mesh(
-            new THREE.IcosahedronGeometry(1.3, 1),
-            new THREE.MeshPhongMaterial({
-                opacity: 0.5,
-                transparent: true,
-                wireframe : true
-            })
-        );
-        this.astreWireFrame.name = 'wireframe'
-        this.astreWireFrame.scale.set(.5,.5,.5);
-        this.astreWireFrame.visible = false
-        this.jurisdiction.add(this.astreWireFrame);
-
-        this.time.on('tick', () => {
-            this.astreWireFrame.rotation.x += 0.003;
-            this.astreWireFrame.rotation.z += 0.003;
-        })
     }
 
     resize() {

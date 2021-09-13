@@ -10,11 +10,11 @@ export default class asteroidBelt {
     }
 
     createBelt() {
-        this.particles = 500000;
+        this.particles = 1000000;
         this.particlesGeometry = new THREE.BufferGeometry();
         // let positions = new Float32Array( particles * 3 );
         this.positions = [];
-        this.n = 40
+        this.n = 750
         this.n2 = this.n / 2;
         for (let i = 0; i < this.particles; i += 3) {
             this.x = Math.random() * this.n - this.n2;
@@ -25,7 +25,7 @@ export default class asteroidBelt {
             this.distanceParticules = this.positionVector.distanceTo(
                 new THREE.Vector3(0, 0, 0)
             );
-            this.size = {start: 19, stop: 20};
+            this.size = {start: 350, stop: 355};
             if ( this.size.stop > this.distanceParticules && this.size.start < this.distanceParticules ) {
                 // position
                 this.positions[i] = this.x;
