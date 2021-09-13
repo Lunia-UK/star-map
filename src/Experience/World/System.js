@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Star from './Star'
 import Stars from './Stars'
-import Jurisdiction from "./jurisdictions";
+import Jurisdiction from "./Jurisdictions";
 import AsteroidBelt from "./AsteroidBelt";
 
 export default class System {
