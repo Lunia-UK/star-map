@@ -163,9 +163,9 @@
             "moons": [
                 {
                     "name": "Calliope",
-                    "Xposition": 0.6,
+                    "Xposition": -1.2,
                     "Yposition": 0,
-                    "Zposition": -0.8,
+                    "Zposition": -1.3,
                     "size":1000,
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
@@ -173,9 +173,9 @@
                 },
                 {
                     "name": "Clio",
-                    "Xposition": 0.6,
+                    "Xposition": -1.6,
                     "Yposition": 0,
-                    "Zposition": 1.8,
+                    "Zposition": -1.8,
                     "size":1000,
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
@@ -183,7 +183,7 @@
                 },
                 {
                     "name": "Euterpe",
-                    "Xposition": 0.6,
+                    "Xposition": -1.1,
                     "Yposition": 0,
                     "Zposition": 0.6,
                     "size":1000,

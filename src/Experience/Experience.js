@@ -120,8 +120,6 @@ export default class Experience {
         this.raycaster = new Raycaster()
     }
 
-
-
     update() {
         if(this.stats)
             this.stats.update()
