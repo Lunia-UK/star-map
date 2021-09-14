@@ -29,7 +29,7 @@ export default class CreateOrbit  {
     this.materialOrbit = new THREE.LineBasicMaterial( {
       color : this.color,
       opacity: 0.9,
-      transparent: true
+      transparent: false
     });
 
     this.orbit = new THREE.Line( this.geometryOrbit,this.materialOrbit );

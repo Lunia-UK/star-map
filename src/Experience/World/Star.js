@@ -32,8 +32,6 @@ export default class Star {
                 uPerlin: {value: null},
             },
             side: THREE.DoubleSide,
-
-
         })
 
         this.sun = new THREE.Mesh(this.geometryStar, this.materialSun)

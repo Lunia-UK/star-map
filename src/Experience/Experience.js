@@ -12,6 +12,7 @@ import World from './World.js'
 import Raycaster from './Raycaster'
 
 import assets from './assets.js'
+import gsap from "gsap";
 
 export default class Experience {
     constructor(_options = {}) {
@@ -35,6 +36,7 @@ export default class Experience {
         this.setLights()
         this.setRenderer()
         this.setResources()
+        this.setScreenLoader()
         this.setWorld()
         this.setInfo()
         this.setRaycaster()
@@ -95,6 +97,31 @@ export default class Experience {
 
     setResources() {
         this.resources = new Resources(assets)
+    }
+
+    setScreenLoader() {
+        this.screenLoader = document.querySelector('.screenLoader')
+        this.enterButton = document.querySelector('#enterButton')
+        this.container = document.querySelector('.container')
+        this.ressourcesLoader = false
+        this.resources.on('end', () => {
+            this.ressourcesLoader = true
+            this.enterButton.style.display = 'block'
+        })
+        this.enterButton.addEventListener('click', ()=> {
+            this.container.style.opacity = 0
+            this.screenLoader.style.opacity = 0
+            setTimeout(()=>{
+                this.screenLoader.style.display = 'none'
+            }, 1000);
+            gsap.to(this.camera.modes.debug.instance.position, {
+                duration: 1,
+                delay: 0.6,
+                x: 0,
+                y: 150,
+                z: 750,
+            })
+        })
     }
 
     setWorld() {
