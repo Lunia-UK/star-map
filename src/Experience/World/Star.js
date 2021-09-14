@@ -14,6 +14,7 @@ export default class Star {
         this.scene = this.experience.scene
         this.sceneSun = this.experience.sceneSun
         this.debug = this.experience.debug
+        this.raycaster = this.experience.raycaster
         this.system = systemGroup
         this.data = data
         this.time = new Time()
@@ -37,7 +38,11 @@ export default class Star {
 
         this.sun = new THREE.Mesh(this.geometryStar, this.materialSun)
         this.sun.scale.set(12,12,12)
+        this.sun.objectType = 'Star'
+        this.sun.name = this.data.systemName
+        this.sun.area = this.data.area
         this.system.add(this.sun)
+        this.raycaster.objectToTest.push(this.sun)
 
         this.cubeRenderTarget1 = new THREE.WebGLCubeRenderTarget( 256, {
             format: THREE.RGBFormat,

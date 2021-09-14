@@ -63,9 +63,12 @@ export default class Raycaster {
 
     controlsChange() {
         this.controls.addEventListener('change', () => {
-            if(this.objectSelected && !this.animationInProgress){
-                this.distance = this.camera.instance.position.distanceTo( this.objectSelectedPosition);
-                if (this.distance > 20) {
+            if(this.objectSelected && !this.animationInProgress) {
+                this.distance = this.camera.instance.position.distanceTo(this.objectSelectedPosition);
+                this.objectSelected.objectType !== 'Star' ? this.limiteDistance = 20 : this.limiteDistance = 100
+
+                console.log(this.limiteDistance)
+                if (this.distance > this.limiteDistance) {
                     this.objectSelected = null
                     this.experience.objectSelected = null
                     this.infoElements[0].innerText = 'System'
@@ -85,6 +88,8 @@ export default class Raycaster {
                     this.objectSelected = this.currentIntersect.object;
                     this.experience.objectSelected = this.objectSelected
                     this.animationInProgress = true
+
+                    console.log(this.objectSelected)
                     switch (this.objectSelected.objectType) {
 
                         case 'Moon':
@@ -113,6 +118,20 @@ export default class Raycaster {
                             this.distanceFocusZ = 5
                             this.distanceFocusY = 0.75
 
+
+                            break;
+
+                        case 'Star':
+
+                            // Star position
+                            this.x = this.currentIntersect.object.position.x
+                            this.y = this.currentIntersect.object.position.y
+                            this.z = this.currentIntersect.object.position.z
+                            this.objectSelectedPosition =  new THREE.Vector3( this.x, this.y, this.z )
+
+                            // Distance camera/Planet
+                            this.distanceFocusZ = 80
+                            this.distanceFocusY = 0.75
 
                             break;
                         default:
