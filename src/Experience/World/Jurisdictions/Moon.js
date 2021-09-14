@@ -27,14 +27,16 @@ export default class Moon {
         this.moonGroup.position.z = this.data.Zposition;
         this.moonMesh = new THREE.Mesh(
             new THREE.SphereGeometry(1, 32, 32, 1),
-            new THREE.MeshPhongMaterial({
-                opacity: 1,
+            new THREE.MeshStandardMaterial({
+                opacity: 0.9,
                 transparent: true,
             })
         );
         const textureMap = this.data.name.toLowerCase() + 'Texture'
         this.moonMesh.material.map = this.resources.items[textureMap]
         this.moonMesh.name = this.data.name
+        this.moonMesh.objectType = 'Moon'
+        this.moonMesh.area = this.data.area
         this.moonMesh.scale.set(0.08,0.08,0.08);
         this.moonGroup.add(this.moonMesh)
         this.jurisdictionGroup.add(this.moonGroup)
@@ -43,7 +45,6 @@ export default class Moon {
 
     setOrbit() {
         this.orbit = new Orbit(this.moonGroup, 1, this.data.Xposition, this.data.Zposition, this.data.color, this.data.focusColor)
-        console.log(this.orbit)
     }
 
     resize() {

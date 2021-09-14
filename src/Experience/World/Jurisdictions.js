@@ -19,7 +19,7 @@ export default class Jurisdiction {
     setJurisdiction() {
         this.jurisdictionGroup = new THREE.Group()
         this.jurisdictionGroup.name = this.data.id
-        this.jurisdictionGroup.type = 'Jurisdiction'
+        this.jurisdictionGroup.objectType = 'Jurisdiction'
         this.jurisdictionGroup.area = this.data.area
         this.name = this.data.id
         this.jurisdictionGroup.position.x = this.data.astre.Xposition / this.scale

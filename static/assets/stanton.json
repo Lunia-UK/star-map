@@ -16,6 +16,7 @@
                 "Yposition": 0,
                 "Zposition": 0,
                 "size":2000,
+                "area": "UEE",
                 "texture": "hurston2.jpg",
                 "color": "rgb(82, 186, 198)",
                 "focusColor": "rgb(220, 220, 220)"
@@ -27,6 +28,7 @@
                     "Yposition": 0,
                     "Zposition": 1,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "arial.jpg",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -37,6 +39,7 @@
                     "Yposition": 0,
                     "Zposition": 1,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "ita.jpg",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -47,6 +50,7 @@
                     "Yposition": 0,
                     "Zposition": -0.8,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "aberdeen.jpg",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -57,6 +61,7 @@
                     "Yposition": 0,
                     "Zposition": -1.6,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "aberdeen.jpg",
                     "color": "rgb(82, 186, 198)"
                 }
@@ -72,6 +77,7 @@
                 "Yposition": 0,
                 "Zposition": -2917765,
                 "size":5000,
+                "area": "UEE",
                 "texture": "crusader2.jpg",
                 "color": "rgb(82, 186, 198)",
                 "focusColor": "rgb(220, 220, 220)"
@@ -83,6 +89,7 @@
                     "Yposition": 0,
                     "Zposition": 1,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "yela.jpg",
                     "color": "rgba(82, 186, 198, 0.2)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -93,6 +100,7 @@
                     "Yposition": 0,
                     "Zposition": -1.8,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "yela.jpg",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -103,6 +111,7 @@
                     "Yposition": 0,
                     "Zposition": -1.8,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "daymar.jpg",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -119,6 +128,7 @@
                 "Yposition": 0,
                 "Zposition": 22121256,
                 "size":1600,
+                "area": "UEE",
                 "texture": "arccorp.jpg",
                 "color": "rgb(82, 186, 198)",
                 "focusColor": "rgb(220, 220, 220)"
@@ -130,6 +140,7 @@
                     "Yposition": 0,
                     "Zposition": -0.8,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -140,6 +151,7 @@
                     "Yposition": 0,
                     "Zposition": 1.8,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -156,6 +168,7 @@
                 "Yposition": 0,
                 "Zposition": -37255959,
                 "size":2000,
+                "area": "UEE",
                 "texture": "microtech.jpg",
                 "color": "rgb(82, 186, 198)",
                 "focusColor": "rgb(220, 220, 220)"
@@ -167,6 +180,7 @@
                     "Yposition": 0,
                     "Zposition": -1.3,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -177,6 +191,7 @@
                     "Yposition": 0,
                     "Zposition": -1.8,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"
@@ -187,6 +202,7 @@
                     "Yposition": 0,
                     "Zposition": 0.6,
                     "size":1000,
+                    "area": "UEE",
                     "texture": "",
                     "color": "rgb(82, 186, 198)",
                     "focusColor": "rgb(220, 220, 220)"

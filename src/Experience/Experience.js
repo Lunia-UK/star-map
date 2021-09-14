@@ -26,6 +26,7 @@ export default class Experience {
 
         this.time = new Time()
         this.sizes = new Sizes()
+        this.objectSelected = null
         this.setConfig()
         this.setStats()
         this.setDebug()

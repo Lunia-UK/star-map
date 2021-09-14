@@ -18,15 +18,17 @@ export default class Planet {
 
     setPlanets() {
         this.astreMesh = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 32, 32, 1),
-            new THREE.MeshPhongMaterial({
-                opacity: 1,
+            new THREE.SphereGeometry(1, 64, 64, 1),
+            new THREE.MeshStandardMaterial({
+                opacity: 0.9,
                 transparent: true,
             })
         );
         const textureMap = this.data.astre.astreName.toLowerCase() + 'Texture'
         this.astreMesh.material.map = this.resources.items[textureMap]
         this.astreMesh.name = this.data.astre.astreName
+        this.astreMesh.objectType = 'Planet'
+        this.astreMesh.area = this.data.area
         this.astreMesh.scale.set(10,10,10);
         this.jurisdiction.add(this.astreMesh)
         this.raycaster.objectToTest.push(this.astreMesh)

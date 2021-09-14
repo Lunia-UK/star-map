@@ -21,7 +21,7 @@ export default class Star {
     }
 
     setStar() {
-        this.geometryStar = new THREE.SphereGeometry(1, 32, 32)
+        this.geometryStar = new THREE.SphereGeometry(1, 64, 64)
 
         this.materialSun = new THREE.ShaderMaterial({
             vertexShader: vertexShaderSun,

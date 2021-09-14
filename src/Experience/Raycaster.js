@@ -9,13 +9,13 @@ export default class Raycaster {
         this.debug = this.experience.debug
         this.time = this.experience.time
         this.sizes = this.experience.sizes
+        this.objectSelected = this.experience.objectSelected
+        this.objectSelectedPosition = null
         this.camera = this.experience.camera
         this.controls = this.camera.modes.debug.orbitControls
         this.resources = this.experience.resources
         this.infoElements = this.experience.infoElements
         this.objectToTest = []
-        this.objectFocus = false
-        // this.animationInProgress = false
 
         this.mouse()
         this.setRaycaster()
@@ -34,7 +34,7 @@ export default class Raycaster {
             this.raycaster.setFromCamera(this.mouse, this.camera.instance)
             this.intersects = this.raycaster.intersectObjects(this.objectToTest);
             for(const intersect of this.intersects) {
-                if(this.intersects.length && this.objectFocus !== this.intersects[0].object) {
+                if(this.intersects.length && this.objectSelected !== this.intersects[0].object) {
                     this.currentIntersect = this.intersects[0]
                     this.currentOrbit = intersect.object.parent.children[1]
                     this.currentOrbit.material.color = new THREE.Color(this.currentOrbit.focusColor)
@@ -45,7 +45,7 @@ export default class Raycaster {
             for(const object of this.objectToTest) {
                 if(!this.intersects.find(intersect => intersect.object === object)) {
                     this.currentOrbit = object.parent.children[1]
-                    if(object !== this.objectFocus){
+                    if(object !== this.objectSelected){
                         this.currentOrbit.material.color = new THREE.Color(this.currentOrbit.color)
                     }
                 }
@@ -63,10 +63,11 @@ export default class Raycaster {
 
     controlsChange() {
         this.controls.addEventListener('change', () => {
-            if(this.objectFocus && !this.animationInProgress){
-                this.distance = this.camera.instance.position.distanceTo( this.objectFocus.parent.position );
+            if(this.objectSelected && !this.animationInProgress){
+                this.distance = this.camera.instance.position.distanceTo( this.objectSelectedPosition);
                 if (this.distance > 20) {
-                    this.objectFocus = null
+                    this.objectSelected = null
+                    this.experience.objectSelected = null
                     this.infoElements[0].innerText = 'System'
                     this.infoElements[1].innerText = 'Stanton'
                     this.infoElements[2].innerText = `${this.resources.items.dataStanton.coords.lat.toPrecision(8)}, ${this.resources.items.dataStanton.coords.long.toPrecision(8)}`
@@ -80,28 +81,60 @@ export default class Raycaster {
         window.addEventListener(
             "dblclick",
             () => {
-                if(this.currentIntersect && this.objectFocus !== this.currentIntersect.object) {
-                    this.objectFocus = this.currentIntersect.object;
+                if(this.currentIntersect && this.objectSelected !== this.currentIntersect.object) {
+                    this.objectSelected = this.currentIntersect.object;
+                    this.experience.objectSelected = this.objectSelected
                     this.animationInProgress = true
-                    this.x = this.currentIntersect.object.parent.position.x
-                    this.y = this.currentIntersect.object.parent.position.y
-                    this.z = this.currentIntersect.object.parent.position.z
+                    switch (this.objectSelected.objectType) {
+
+                        case 'Moon':
+
+                            // Moon position
+                            this.x = this.currentIntersect.object.parent.position.x + this.currentIntersect.object.parent.parent.position.x
+                            this.y = this.currentIntersect.object.parent.position.y + this.currentIntersect.object.parent.parent.position.y
+                            this.z = this.currentIntersect.object.parent.position.z + this.currentIntersect.object.parent.parent.position.z
+                            this.objectSelectedPosition =  new THREE.Vector3( this.x, this.y, this.z )
+
+                            // Distance camera/moon
+                            this.distanceFocusZ = 0.5
+                            this.distanceFocusY = 0.05
+
+
+                            break;
+                        case 'Planet':
+
+                            // Planet position
+                            this.x = this.currentIntersect.object.parent.position.x
+                            this.y = this.currentIntersect.object.parent.position.y
+                            this.z = this.currentIntersect.object.parent.position.z
+                            this.objectSelectedPosition =  new THREE.Vector3( this.x, this.y, this.z )
+
+                            // Distance camera/Planet
+                            this.distanceFocusZ = 5
+                            this.distanceFocusY = 0.75
+
+
+                            break;
+                        default:
+                            break;
+                    }
+                    this.camera.modes.debug.orbitControls.target = this.objectSelectedPosition
+                    this.infoElements[0].innerText = this.objectSelected.objectType
+                    this.infoElements[1].innerText = this.objectSelected.name
+                    this.infoElements[2].innerText = `${this.objectSelected.parent.position.x.toPrecision(8)}, ${this.objectSelected.parent.position.z.toPrecision(8)}`
+                    this.infoElements[3].innerText = this.objectSelected.area
+
                     gsap.to(this.camera.modes.debug.instance.position, {
                         duration: 1.5,
                         x: this.x,
-                        y: this.y + 0.75,
-                        z: this.z + 5,
+                        y: this.y + this.distanceFocusY,
+                        z: this.z + this.distanceFocusZ,
                     })
+
                     setTimeout(() => {
                         this.animationInProgress = false
                     }, 1500);
-                    this.objectFocusPosition = this.objectFocus.parent.position.clone()
-                    this.camera.modes.debug.orbitControls.target = this.objectFocusPosition
-                    console.log(this.currentIntersect.object)
-                    this.infoElements[0].innerText = this.currentIntersect.object.parent.type
-                    this.infoElements[1].innerText = this.currentIntersect.object.parent.name
-                    this.infoElements[2].innerText = `${this.objectFocus.parent.position.x.toPrecision(8)}, ${this.objectFocus.parent.position.z.toPrecision(8)}`
-                    this.infoElements[3].innerText = this.currentIntersect.object.parent.area
+
                 }
             },
             false

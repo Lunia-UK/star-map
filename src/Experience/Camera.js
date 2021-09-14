@@ -58,6 +58,7 @@ export default class Camera
         this.modes.debug.trackballControls.noRotate = true;
         this.modes.debug.trackballControls.noPan = true;
         this.modes.debug.trackballControls.noZoom = false;
+        this.modes.debug.trackballControls.maxDistance = 1500;
         this.modes.debug.trackballControls.zoomSpeed = 1.5;
         this.modes.debug.trackballControls.update()
 
