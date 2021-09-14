@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Play;
+    src: url(font/Play-Regular.ttf);
+}
+
+@font-face {
+    font-family: Jura;
+    src: url(font/Jura-VariableFont_wght.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +18,7 @@ html,
 body
 {
     overflow: hidden;
-    font-family: 'Jura', sans-serif;
+    font-family: 'play', sans-serif;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -25,15 +35,16 @@ body
     height: 100vh;
 }
 
-
-
 #containerInfo {
     position: absolute;
     z-index: 2;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 10px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    transition-delay: 0.6s;
 }
 
 #containerInfo :is(.type, .systemName, .coords, .area ) {
@@ -42,7 +53,6 @@ body
 
 .systemName {
     font-size: 1.5rem;
-    /*font-family: Rajdhani, sans-serif;*/
     font-weight: 500;
     margin:0;
     text-transform: uppercase;
@@ -76,7 +86,7 @@ h1 {
     text-transform: uppercase;
 }
 
-p {
+.description {
     font-size: 3vh;
     margin: 1.3vh;
 }

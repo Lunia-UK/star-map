@@ -28,8 +28,8 @@ export default class CreateOrbit  {
     this.geometryOrbit = new THREE.BufferGeometry().setFromPoints( this.pointsOrbit );
     this.materialOrbit = new THREE.LineBasicMaterial( {
       color : this.color,
-      opacity: 0.9,
-      transparent: false
+      opacity: 0.85,
+      transparent: true
     });
 
     this.orbit = new THREE.Line( this.geometryOrbit,this.materialOrbit );

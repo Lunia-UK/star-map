@@ -28,7 +28,7 @@ export default class Moon {
         this.moonMesh = new THREE.Mesh(
             new THREE.SphereGeometry(1, 32, 32, 1),
             new THREE.MeshStandardMaterial({
-                opacity: 0.9,
+                opacity: 1,
                 transparent: true,
             })
         );

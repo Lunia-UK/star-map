@@ -20,7 +20,7 @@ export default class Planet {
         this.astreMesh = new THREE.Mesh(
             new THREE.SphereGeometry(1, 64, 64, 1),
             new THREE.MeshStandardMaterial({
-                opacity: 0.9,
+                opacity: 1,
                 transparent: true,
             })
         );
