@@ -104,6 +104,10 @@ export default class Raycaster {
                             this.distanceFocusZ = 0.5
                             this.distanceFocusY = 0.05
 
+                            // Audio
+                            this.audioClick = new Audio('../sounds/click_v1.mp3');
+                            this.audioClick.play()
+                            this.audioClick.volume = 0.8
 
                             break;
                         case 'Planet':
@@ -118,6 +122,10 @@ export default class Raycaster {
                             this.distanceFocusZ = 5
                             this.distanceFocusY = 0.75
 
+                            // Audio
+                            this.audioClick = new Audio('../sounds/click_v3.mp3');
+                            this.audioClick.play()
+                            this.audioClick.volume = 0.8
 
                             break;
 

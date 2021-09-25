@@ -123,18 +123,29 @@ export default class Experience {
         this.screenLoader = document.querySelector('.screenLoader')
         this.enterButton = document.querySelector('#enterButton')
         this.container = document.querySelector('.container')
+        this.audioNape = new Audio('../sounds/nape_space.mp3');
         this.ressourcesLoader = false
+
+        // When ressources loaded display "Entrer" button
         this.resources.on('end', () => {
             this.ressourcesLoader = true
             this.enterButton.style.display = 'block'
         })
+
+        // Entrer Button Click
         this.enterButton.addEventListener('click', ()=> {
             this.container.style.opacity = 0
             this.screenLoader.style.opacity = 0
             this.containerInfo.style.opacity = 1
+
+            // start sound
+            this.audioNape.play()
+            this.audioNape.volume = 0.1
             setTimeout(()=>{
                 this.screenLoader.style.display = 'none'
             }, 1000);
+
+            // Move camera on start
             gsap.to(this.camera.modes.debug.instance.position, {
                 duration: 1,
                 delay: 0.6,
