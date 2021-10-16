@@ -10,6 +10,7 @@ export default class Raycaster {
         this.time = this.experience.time
         this.sizes = this.experience.sizes
         this.objectSelected = this.experience.objectSelected
+        this.previosObjectSelected = this.experience.previosObjectSelected
         this.objectSelectedPosition = null
         this.currentLevel = 'System'
         this.camera = this.experience.camera
@@ -132,23 +133,33 @@ export default class Raycaster {
                                     break;
 
                                 case 'Jurisdiction':
-                                    if(this.objectSelected === this.objectSelected) {
+                                    if(this.objectSelected !== this.previosObjectSelected) {
+                                        this.currentLevel = 'Jurisdiction'
+                                        this.x = this.currentIntersect.object.parent.position.x
+                                        this.y = this.currentIntersect.object.parent.position.y
+                                        this.z = this.currentIntersect.object.parent.position.z
+                                        this.objectSelectedPosition = new THREE.Vector3(this.x, this.y, this.z)
+
+                                        // Distance camera/Jurisdiction
+                                        this.distanceFocusZ = 5
+                                        this.distanceFocusY = 0.75
+
+                                    } else {
                                         this.currentLevel = 'Planet'
+
+                                        // Planet position
+                                        this.x = this.currentIntersect.object.parent.position.x
+                                        this.y = this.currentIntersect.object.parent.position.y
+                                        this.z = this.currentIntersect.object.parent.position.z
+                                        this.objectSelectedPosition = new THREE.Vector3(this.x, this.y, this.z)
+
+                                        // Distance camera/Planet
+                                        this.distanceFocusZ = 3
+                                        this.distanceFocusY = 0.75
                                     }
-                                    // Planet position
-                                    this.x = this.currentIntersect.object.parent.position.x
-                                    this.y = this.currentIntersect.object.parent.position.y
-                                    this.z = this.currentIntersect.object.parent.position.z
-                                    this.objectSelectedPosition = new THREE.Vector3(this.x, this.y, this.z)
-
-                                    // Distance camera/Planet
-                                    this.distanceFocusZ = 3
-                                    this.distanceFocusY = 0.75
                                     break;
-
                                 case 'Planet':
                                     if(this.objectSelected === this.objectSelected) {
-                                        console.log('hello')
                                         this.currentLevel = 'Jurisdiction'
                                     }
                                     // Jurisdiction position
@@ -219,7 +230,7 @@ export default class Raycaster {
                     setTimeout(() => {
                         this.animationInProgress = false
                     }, 1500);
-
+                    this.previosObjectSelected = this.objectSelected
                 }
             },
             false
