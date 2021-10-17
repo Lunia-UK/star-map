@@ -29,6 +29,15 @@ export default class Planet {
         this.astreMesh.name = this.data.astre.astreName
         this.astreMesh.objectType = 'Planet'
         this.astreMesh.area = this.data.area
+        this.astreMesh.description = this.data.astre.description
+        this.astreMesh.habitable = this.data.astre.habitable
+        this.astreMesh.spaceStations = this.data.astre.spaceStations
+        this.astreMesh.gravity = this.data.astre.gravity
+        this.astreMesh.cycleOrbital = this.data.astre.cycleOrbital
+        this.astreMesh.atmosphericPressure = this.data.astre.atmosphericPressure
+        this.astreMesh.compositionByVolume = this.data.astre.compositionByVolume
+        this.astreMesh.temperature = this.data.astre.temperature
+        this.astreMesh.discovered = this.data.astre.discovered
         this.astreMesh.scale.set(10,10,10);
         this.jurisdiction.add(this.astreMesh)
         this.raycaster.objectToTest.push(this.astreMesh)

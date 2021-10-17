@@ -17,6 +17,7 @@ export default class Raycaster {
         this.controls = this.camera.modes.debug.orbitControls
         this.resources = this.experience.resources
         this.infoElements = this.experience.infoElements
+        this.primaryFrame = this.experience.primaryFrame
         this.objectToTest = []
 
         this.mouse()
@@ -71,7 +72,9 @@ export default class Raycaster {
                 this.objectSelected.objectType !== 'Star' ? this.limiteDistance = 20 : this.limiteDistance = 100
 
                 if (this.distance > this.limiteDistance) {
+                    this.experience.primaryFrame.frame.style.opacity = 0
                     this.currentLevel = 'System'
+                    this.experience.primaryFrame.title.innerText = 'Stanton'
                     this.objectSelected = null
                     this.experience.objectSelected = null
                     this.infoElements[0].innerText = this.currentLevel
@@ -92,12 +95,17 @@ export default class Raycaster {
                     this.experience.objectSelected = this.objectSelected
                     this.animationInProgress = true
 
-                    console.log(this.objectSelected)
                     switch (this.objectSelected.objectType) {
 
                         case 'Moon':
 
                             this.currentLevel = 'Moon'
+                            this.experience.primaryFrame.frame.style.opacity = 1
+                            this.experience.primaryFrame.title.innerText = this.currentIntersect.object.name
+                            this.experience.primaryFrame.description.innerText = this.currentIntersect.object.parent.description
+                            this.experience.primaryFrame.habitable.innerText = `Habitable: ${this.currentIntersect.object.parent.habitable}`
+                            this.experience.primaryFrame.spaceStations.innerText = `Space Stations: ${this.currentIntersect.object.parent.spaceStations}`
+                            this.experience.primaryFrame.discovered.innerText = `Discovered in:  ${this.currentIntersect.object.parent.discovered}`
 
                             // Moon position
                             this.x = this.currentIntersect.object.parent.position.x + this.currentIntersect.object.parent.parent.position.x
@@ -121,6 +129,7 @@ export default class Raycaster {
 
                                 case 'System':
                                     this.currentLevel = 'Jurisdiction'
+
                                     // Jurisdiction position
                                     this.x = this.currentIntersect.object.parent.position.x
                                     this.y = this.currentIntersect.object.parent.position.y
@@ -135,6 +144,8 @@ export default class Raycaster {
                                 case 'Jurisdiction':
                                     if(this.objectSelected !== this.previosObjectSelected) {
                                         this.currentLevel = 'Jurisdiction'
+                                        this.experience.primaryFrame.frame.style.opacity = 0
+
                                         this.x = this.currentIntersect.object.parent.position.x
                                         this.y = this.currentIntersect.object.parent.position.y
                                         this.z = this.currentIntersect.object.parent.position.z
@@ -145,7 +156,21 @@ export default class Raycaster {
                                         this.distanceFocusY = 0.75
 
                                     } else {
+                                        this.experience.primaryFrame.frame.style.opacity = 1
                                         this.currentLevel = 'Planet'
+
+                                        this.experience.primaryFrame.title.innerText = this.currentIntersect.object.name
+                                        this.experience.primaryFrame.description.innerText = this.currentIntersect.object.description
+                                        this.experience.primaryFrame.habitable.innerText = `Habitable: ${this.currentIntersect.object.habitable}`
+                                        this.experience.primaryFrame.spaceStations.innerText = `Space Stations: ${this.currentIntersect.object.spaceStations}`
+                                        this.experience.primaryFrame.gravity.innerText = `Gravity: ${this.currentIntersect.object.gravity}`
+                                        console.log(this.experience.primaryFrame)
+
+                                        // this.experience.primaryFrame.cycleOrbital.innerText = `CycleOrbital: ${this.currentIntersect.object.cycleOrbital}`
+                                        this.experience.primaryFrame.atmosphericPressure.innerText = `Atmospheric pressure: ${this.currentIntersect.object.atmosphericPressure}`
+                                        this.experience.primaryFrame.compositionByVolume.innerText = `Composition by volume: ${this.currentIntersect.object.compositionByVolume}`
+                                        this.experience.primaryFrame.temperature.innerText = `Temperature: ${this.currentIntersect.object.temperature}`
+                                        this.experience.primaryFrame.discovered.innerText = `Discovered in:  ${this.currentIntersect.object.discovered}`
 
                                         // Planet position
                                         this.x = this.currentIntersect.object.parent.position.x
@@ -158,9 +183,11 @@ export default class Raycaster {
                                         this.distanceFocusY = 0.75
                                     }
                                     break;
+
                                 case 'Planet':
                                     if(this.objectSelected === this.objectSelected) {
                                         this.currentLevel = 'Jurisdiction'
+                                        this.experience.primaryFrame.frame.style.opacity = 0
                                     }
                                     // Jurisdiction position
                                     this.x = this.currentIntersect.object.parent.position.x
@@ -175,6 +202,13 @@ export default class Raycaster {
 
                                 case 'Moon':
                                     this.currentLevel = 'Jurisdiction'
+                                    this.experience.primaryFrame.frame.style.opacity = 0
+                                    this.experience.primaryFrame.title.innerText = ''
+                                    this.experience.primaryFrame.description.innerText = ''
+                                    this.experience.primaryFrame.habitable.innerText = ''
+                                    this.experience.primaryFrame.spaceStations.innerText = ''
+                                    this.experience.primaryFrame.discovered.innerText = ''
+
                                     // Jurisdiction position
                                     this.x = this.currentIntersect.object.parent.position.x
                                     this.y = this.currentIntersect.object.parent.position.y

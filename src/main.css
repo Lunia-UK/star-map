@@ -117,3 +117,33 @@ h1 {
     transform: translate(2px,2px);
     transition: 0.5s;
 }
+
+.frame {
+    opacity: 0;
+    position: absolute;
+    z-index: 5;
+    width: 500px;
+    background: rgba(0, 0, 0, 0.88);
+    border: solid 1px white;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.frame h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.frame img {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.frame p {
+    margin: 20px;
+}
+
+.frame-primary {
+    top: 50px;
+    right: 50px;
+}

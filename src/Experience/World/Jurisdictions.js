@@ -22,6 +22,7 @@ export default class Jurisdiction {
         this.jurisdictionGroup.objectType = 'Jurisdiction'
         this.jurisdictionGroup.area = this.data.area
         this.name = this.data.id
+        this.jurisdictionGroup.description = this.data.description
         this.jurisdictionGroup.position.x = this.data.astre.Xposition / this.scale
         this.jurisdictionGroup.position.y = this.data.astre.Yposition / this.scale
         this.jurisdictionGroup.position.z = this.data.astre.Zposition / this.scale

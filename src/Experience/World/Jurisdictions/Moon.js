@@ -22,6 +22,10 @@ export default class Moon {
     setMoon() {
         this.moonGroup = new THREE.Group()
         this.moonGroup.name = this.data.name
+        this.moonGroup.description = this.data.description
+        this.moonGroup.habitable = this.data.habitable
+        this.moonGroup.spaceStations = this.data.spaceStations
+        this.moonGroup.discovered = this.data.discovered
         this.moonGroup.position.x = this.data.Xposition;
         this.moonGroup.position.y = this.data.Yposition;
         this.moonGroup.position.z = this.data.Zposition;

@@ -10,6 +10,7 @@ import Camera from './Camera.js'
 import Lights from './Lights.js'
 import World from './World.js'
 import Raycaster from './Raycaster'
+import Frame from './Frame'
 
 import assets from './assets.js'
 import gsap from "gsap";
@@ -40,6 +41,7 @@ export default class Experience {
         this.setInfo()
         this.setScreenLoader()
         this.setRaycaster()
+        this.setFrame()
 
         this.sizes.on('resize', () => {
             this.resize()
@@ -158,6 +160,10 @@ export default class Experience {
 
     setRaycaster() {
         this.raycaster = new Raycaster()
+    }
+
+    setFrame() {
+        this.primaryFrame = new Frame('primary', 250)
     }
 
     update() {
