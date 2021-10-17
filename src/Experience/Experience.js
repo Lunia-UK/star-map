@@ -80,7 +80,6 @@ export default class Experience {
     setScene() {
         this.scene = new THREE.Scene()
         this.sceneSun = new THREE.Scene();
-
     }
 
     setCamera() {
@@ -93,7 +92,6 @@ export default class Experience {
 
     setRenderer() {
         this.renderer = new Renderer({ rendererInstance: this.rendererInstance })
-
         this.targetElement.appendChild(this.renderer.instance.domElement)
     }
 
@@ -125,12 +123,14 @@ export default class Experience {
         this.screenLoader = document.querySelector('.screenLoader')
         this.enterButton = document.querySelector('#enterButton')
         this.container = document.querySelector('.container')
+        this.loadingText = document.querySelector('.loadingText')
         this.audioNape = new Audio('../sounds/nape_space.mp3');
         this.ressourcesLoader = false
 
         // When ressources loaded display "Entrer" button
         this.resources.on('end', () => {
             this.ressourcesLoader = true
+            this.loadingText.style.display = 'none'
             this.enterButton.style.display = 'block'
         })
 
