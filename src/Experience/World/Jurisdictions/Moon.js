@@ -25,6 +25,11 @@ export default class Moon {
         this.moonGroup.description = this.data.description
         this.moonGroup.habitable = this.data.habitable
         this.moonGroup.spaceStations = this.data.spaceStations
+        this.moonGroup.gravity = this.data.gravity
+        this.moonGroup.cycleOrbital = this.data.cycleOrbital
+        this.moonGroup.atmosphericPressure = this.data.atmosphericPressure
+        this.moonGroup.compositionByVolume = this.data.compositionByVolume
+        this.moonGroup.temperature = this.data.temperature
         this.moonGroup.discovered = this.data.discovered
         this.moonGroup.position.x = this.data.Xposition;
         this.moonGroup.position.y = this.data.Yposition;
@@ -44,7 +49,7 @@ export default class Moon {
         this.moonMesh.scale.set(0.08,0.08,0.08);
         this.moonGroup.add(this.moonMesh)
         this.jurisdictionGroup.add(this.moonGroup)
-        this.raycaster.objectToTest.push(this.moonMesh)
+        this.raycaster.objectsToTest.push(this.moonMesh)
     }
 
     setOrbit() {

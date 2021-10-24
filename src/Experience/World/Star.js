@@ -40,7 +40,7 @@ export default class Star {
         this.sun.name = this.data.systemName
         this.sun.area = this.data.area
         this.system.add(this.sun)
-        this.raycaster.objectToTest.push(this.sun)
+        this.raycaster.objectsToTest.push(this.sun)
 
         this.cubeRenderTarget1 = new THREE.WebGLCubeRenderTarget( 256, {
             format: THREE.RGBFormat,

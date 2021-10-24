@@ -6,6 +6,9 @@ export default class CreateOrbit  {
     this.config = this.experience.config
     this.scene = this.experience.scene
     this.debug = this.experience.debug
+    this.raycaster = this.experience.raycaster
+    this.controls = this.experience.controls
+
     this.group = group
     this.scale = scale
     this.x = x
@@ -14,7 +17,9 @@ export default class CreateOrbit  {
     this.focusColor = focusColor
 
     this.setOrbit()
+    this.selectedOrbit()
   }
+
   setOrbit() {
     this.raduis = Math.sqrt((this.x)**2 + (this.z)**2) / this.scale
     this.curveOrbit = new THREE.EllipseCurve(
@@ -41,4 +46,17 @@ export default class CreateOrbit  {
 
   }
 
+  selectedOrbit() {
+    this.controls.on('objectSelected', () => {
+      this.currentOrbit = this.raycaster.currentIntersect.object.parent.children[1]
+      if(this.orbit === this.currentOrbit) {
+        this.currentOrbit.material.color = new THREE.Color(this.currentOrbit.focusColor)
+      } else {
+        this.orbit.material.color = new THREE.Color(this.currentOrbit.color)
+      }
+    })
+    this.controls.on('passLimiteDistance', ()=> {
+      this.orbit.material.color = new THREE.Color(this.currentOrbit.color)
+    })
+  }
 };

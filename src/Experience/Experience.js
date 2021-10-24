@@ -10,6 +10,7 @@ import Camera from './Camera.js'
 import Lights from './Lights.js'
 import World from './World.js'
 import Raycaster from './Raycaster'
+import Controls from './Controls'
 import Frame from './Frame'
 
 import assets from './assets.js'
@@ -41,6 +42,7 @@ export default class Experience {
         this.setInfo()
         this.setScreenLoader()
         this.setRaycaster()
+        this.setControls()
         this.setFrame()
 
         this.sizes.on('resize', () => {
@@ -160,6 +162,10 @@ export default class Experience {
 
     setRaycaster() {
         this.raycaster = new Raycaster()
+    }
+
+    setControls() {
+        this.controls = new Controls()
     }
 
     setFrame() {

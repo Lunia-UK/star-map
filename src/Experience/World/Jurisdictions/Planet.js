@@ -40,7 +40,7 @@ export default class Planet {
         this.astreMesh.discovered = this.data.astre.discovered
         this.astreMesh.scale.set(10,10,10);
         this.jurisdiction.add(this.astreMesh)
-        this.raycaster.objectToTest.push(this.astreMesh)
+        this.raycaster.objectsToTest.push(this.astreMesh)
     }
 
     resize() {
