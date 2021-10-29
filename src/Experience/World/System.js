@@ -1,4 +1,3 @@
-import * as THREE from 'three'
 import Star from './Star'
 import Stars from './Stars'
 import Jurisdiction from "./Jurisdictions";
@@ -24,6 +23,7 @@ export default class System {
     setStar() {
         this.star = new Star(this.system, this.data)
     }
+
     setAsteroidBelt() {
         this.asteroidBelt = new AsteroidBelt(this.system)
     }
@@ -31,7 +31,7 @@ export default class System {
 
     setJurisdictions() {
         this.jurisdictions = []
-        for(const dataJurisdiction of this.data.jurisdictions ){
+        for (const dataJurisdiction of this.data.jurisdictions) {
             this.jurisdiction = new Jurisdiction(this.system, dataJurisdiction)
             this.jurisdictions.push(this.jurisdiction)
         }

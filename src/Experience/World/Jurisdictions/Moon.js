@@ -46,7 +46,7 @@ export default class Moon {
         this.moonMesh.name = this.data.name
         this.moonMesh.objectType = 'Moon'
         this.moonMesh.area = this.data.area
-        this.moonMesh.scale.set(0.08,0.08,0.08);
+        this.moonMesh.scale.set(0.02,0.02,0.02);
         this.moonGroup.add(this.moonMesh)
         this.jurisdictionGroup.add(this.moonGroup)
         this.raycaster.objectsToTest.push(this.moonMesh)

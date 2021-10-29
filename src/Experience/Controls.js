@@ -114,8 +114,8 @@ export default class Controls extends EventEmitter{
                 this.setFrame(true, this.currentIntersect.object.parent)
                 this.setPosition(this.currentIntersect.object)
                 this.setAudio('click_v3')
-                this.distanceFocusZ = 0.5
-                this.distanceFocusY = 0.05
+                this.distanceFocusZ = 0.15
+                this.distanceFocusY = 0.015
                 break;
 
             case 'Planet':
@@ -124,8 +124,8 @@ export default class Controls extends EventEmitter{
                 this.setFrame(true, this.currentIntersect.object)
                 this.setPosition(this.currentIntersect.object)
                 this.setAudio('click_v3')
-                this.distanceFocusZ = 3
-                this.distanceFocusY = 0.75
+                this.distanceFocusZ = 0.7
+                this.distanceFocusY = 0.025
                 break;
 
             case 'Jurisdiction':
@@ -134,7 +134,7 @@ export default class Controls extends EventEmitter{
                 this.setFrame(false, this.currentIntersect.object)
                 this.setPosition(this.currentIntersect.object)
                 this.setAudio('click_v1')
-                this.distanceFocusZ = 5
+                this.distanceFocusZ = 3
                 this.distanceFocusY = 0.75
                 break;
 
@@ -144,8 +144,8 @@ export default class Controls extends EventEmitter{
                 this.setFrame(false, this.currentIntersect.object)
                 this.setPosition(this.currentIntersect.object)
                 this.setAudio('click_v1')
-                this.distanceFocusZ = 3
-                this.distanceFocusY = 0.75
+                this.distanceFocusZ = 2
+                this.distanceFocusY = 0.3
                 break;
         }
     }

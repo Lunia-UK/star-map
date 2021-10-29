@@ -25,7 +25,7 @@ export default class Camera
     setInstance()
     {
         // Set up
-        this.instance = new THREE.PerspectiveCamera(25, this.config.width / this.config.height, 0.01, 5000)
+        this.instance = new THREE.PerspectiveCamera(25, this.config.width / this.config.height, 0.01, 4000)
         this.instance.rotation.reorder('YXZ')
 
         this.scene.add(this.instance)
@@ -58,7 +58,7 @@ export default class Camera
         this.modes.debug.trackballControls.noRotate = true;
         this.modes.debug.trackballControls.noPan = true;
         this.modes.debug.trackballControls.noZoom = false;
-        this.modes.debug.trackballControls.maxDistance = 1500;
+        this.modes.debug.trackballControls.maxDistance = 1100;
         this.modes.debug.trackballControls.zoomSpeed = 1.5;
         this.modes.debug.trackballControls.update()
 
