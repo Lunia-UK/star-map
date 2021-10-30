@@ -196,13 +196,15 @@ export default class Controls extends EventEmitter{
     }
 
     startAnimation() {
+        this.distanceCameraObject = this.camera.instance.position.distanceTo(this.objectSelectedPosition);
+        this.d = (this.distanceCameraObject - this.distanceFocusZ) / this.distanceCameraObject;
         this.animationInProgress = true
         this.camera.modes.debug.orbitControls.target = this.objectSelectedPosition
         gsap.to(this.camera.modes.debug.instance.position, {
             duration: 1.5,
-            x: this.x,
-            y: this.y + this.distanceFocusY,
-            z: this.z + this.distanceFocusZ,
+            x: ((1 - this.d) * this.camera.instance.position.x + this.d * this.x) ,
+            y :this.distanceFocusY,
+            z :((1 - this.d)  * this.camera.instance.position.z + this.d * this.z)
         })
 
         setTimeout(() => {

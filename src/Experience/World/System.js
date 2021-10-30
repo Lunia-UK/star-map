@@ -27,8 +27,7 @@ export default class System {
     setAsteroidBelt() {
         this.asteroidBelt = new AsteroidBelt(this.system)
     }
-
-
+    
     setJurisdictions() {
         this.jurisdictions = []
         for (const dataJurisdiction of this.data.jurisdictions) {
