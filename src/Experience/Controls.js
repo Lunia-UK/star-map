@@ -135,7 +135,7 @@ export default class Controls extends EventEmitter{
                 this.setPosition(this.currentIntersect.object)
                 this.setAudio('click_v1')
                 this.distanceFocusZ = 3
-                this.distanceFocusY = 0.75
+                this.distanceFocusY = 0.25
                 break;
 
             case 'Star':
@@ -199,12 +199,17 @@ export default class Controls extends EventEmitter{
         this.distanceCameraObject = this.camera.instance.position.distanceTo(this.objectSelectedPosition);
         this.d = (this.distanceCameraObject - this.distanceFocusZ) / this.distanceCameraObject;
         this.animationInProgress = true
-        // this.camera.modes.debug.orbitControls.target = this.objectSelectedPosition
+
+        if(this.currentLevel === 'Jurisdiction') {
+            this.cameraFinialY = ((1 - this.d) * this.camera.instance.position.y + this.d * this.y) + this.distanceFocusY
+        } else {
+            this.cameraFinialY = ((1 - this.d) * this.camera.instance.position.y + this.d * this.y)
+        }
         gsap.to(this.camera.modes.debug.instance.position, {
             duration: 1.5,
             x: ((1 - this.d) * this.camera.instance.position.x + this.d * this.x) ,
-            y :this.distanceFocusY,
-            z :((1 - this.d)  * this.camera.instance.position.z + this.d * this.z)
+            y: this.cameraFinialY,
+            z: ((1 - this.d)  * this.camera.instance.position.z + this.d * this.z)
         })
 
         gsap.to(this.camera.modes.debug.orbitControls.target, {
