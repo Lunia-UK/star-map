@@ -3,7 +3,7 @@ import Time from '../../Utils/Time'
 import Orbit from "../Orbit";
 
 export default class Moon {
-    constructor(jurisdictionGroup, data, _options) {
+    constructor(jurisdictionGroup, data, dataOutposts, _options) {
         this.experience = window.experience
         this.config = this.experience.config
         this.scene = this.experience.scene
@@ -12,11 +12,13 @@ export default class Moon {
         this.raycaster = this.experience.raycaster
         this.jurisdictionGroup = jurisdictionGroup
         this.data = data
+        this.dataOutposts = dataOutposts
         this.scale = 70000
         this.time = new Time()
 
         this.setMoon()
         this.setOrbit()
+        this.setCity()
     }
 
     setMoon() {
@@ -54,6 +56,33 @@ export default class Moon {
 
     setOrbit() {
         this.orbit = new Orbit(this.moonGroup, 1, this.data.Xposition, this.data.Zposition, this.data.color, this.data.focusColor)
+    }
+
+    setCity() {
+        if(this.dataOutposts) {
+            for (const outpost of this.dataOutposts) {
+                this.outpost = new THREE.Mesh(
+                    new THREE.RingGeometry(1, 1.2, 4),
+                    new THREE.MeshStandardMaterial({
+                        side: THREE.DoubleSide,
+                        color: new THREE.Color(0x4AE3FF)
+                    })
+                );
+                this.outpost.name = outpost.name
+                if(outpost.lat)
+                    this.lat = outpost.lat
+                if(outpost.lon)
+                    this.lon = outpost.lon
+                this.x = 0.02 * Math.cos(this.lat) * Math.cos(this.lon)
+                this.y = 0.02 * Math.cos(this.lat) * Math.sin(this.lon)
+                this.z = 0.02 * Math.sin(this.lat)
+                this.outpost.position.set(this.x, this.y, this.z)
+                this.outpost.scale.set(0.0008, 0.0008, 0.0008);
+                this.outpost.lookAt(this.moonMesh.position)
+                this.moonGroup.add(this.outpost)
+                this.raycaster.objectsToTest.push(this.outpost)
+            }
+        }
     }
 
     resize() {

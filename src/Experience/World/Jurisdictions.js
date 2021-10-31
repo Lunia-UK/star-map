@@ -4,13 +4,14 @@ import Moon from "./Jurisdictions/Moon";
 import Orbit from "./Orbit";
 
 export default class Jurisdiction {
-    constructor(system, data, _options) {
+    constructor(system, data, dataOutposts, _options) {
         this.experience = window.experience
         this.config = this.experience.config
         this.scene = this.experience.scene
         this.debug = this.experience.debug
         this.system = system
         this.data = data
+        this.dataOutposts = dataOutposts
         this.scale = 70000
 
         this.setJurisdiction()
@@ -31,7 +32,7 @@ export default class Jurisdiction {
 
         this.moons = []
         for(const dataMoon of this.data.moons) {
-            const moon =  new Moon(this.jurisdictionGroup, dataMoon)
+            const moon =  new Moon(this.jurisdictionGroup, dataMoon, this.dataOutposts)
             this.moons.push(moon)
         }
         this.system.add(this.jurisdictionGroup)

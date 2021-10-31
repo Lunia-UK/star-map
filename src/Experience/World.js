@@ -19,7 +19,7 @@ export default class World {
     setSystem() {
         this.systemGroup = new THREE.Group();
         this.systemGroup.name = this.resources.items.dataStanton.systemName
-        this.system = new System(this.systemGroup, this.resources.items.dataStanton)
+        this.system = new System(this.systemGroup, this.resources.items.dataStanton, this.resources.items.dataOutposts)
         this.scene.add(this.systemGroup)
     }
 
@@ -34,6 +34,7 @@ export default class World {
                     jurisdiction.planet.astreMesh.scale.x = this.distance / 50
                     jurisdiction.planet.astreMesh.scale.y = this.distance / 50
                     jurisdiction.planet.astreMesh.scale.z = this.distance / 50
+
                 }
             }
     }

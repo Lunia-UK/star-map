@@ -4,7 +4,7 @@ import Jurisdiction from "./Jurisdictions";
 import AsteroidBelt from "./AsteroidBelt";
 
 export default class System {
-    constructor(systemGroup, data, _options) {
+    constructor(systemGroup, data, dataOutposts, _options) {
         this.experience = window.experience
         this.config = this.experience.config
         this.resources = this.experience.resources
@@ -13,6 +13,7 @@ export default class System {
         this.infoElements = this.experience.infoElements
         this.system = systemGroup
         this.data = data
+        this.dataOutposts = dataOutposts
         this.setStar()
         this.setStars()
         this.setAsteroidBelt()
@@ -31,7 +32,7 @@ export default class System {
     setJurisdictions() {
         this.jurisdictions = []
         for (const dataJurisdiction of this.data.jurisdictions) {
-            this.jurisdiction = new Jurisdiction(this.system, dataJurisdiction)
+            this.jurisdiction = new Jurisdiction(this.system, dataJurisdiction, this.resources.items.dataOutposts)
             this.jurisdictions.push(this.jurisdiction)
         }
     }

@@ -5,6 +5,7 @@ export default [
         items:
             [
                 { name: 'dataStanton', source: '/assets/stanton.json', type: 'data' },
+                { name: 'dataOutposts', source: '/assets/outposts.json', type: 'data' },
                 { name: 'starsTexture', source: '/assets/stars.png', type: 'texture' },
                 { name: 'asteroidTexture', source: '/assets/asteroid.png', type: 'texture' },
                 { name: 'aberdeenTexture', source: '/assets/aberdeen.png', type: 'texture' },
