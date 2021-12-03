@@ -1,0 +1,30 @@
+.frame {
+  color: var(--color-primary);
+  opacity: 0;
+  position: absolute;
+  z-index: 5;
+  width: 500px;
+  background: rgba(0, 0, 0, 0.88);
+  border: solid 1px white;
+  padding: 20px;
+  transition: 0.3s;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  img {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  p {
+    margin: 20px;
+  }
+}
+
+.frame-primary {
+  top: 50px;
+  right: 50px;
+}
